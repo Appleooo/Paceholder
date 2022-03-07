@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
+import CategoryBar from '../components/CategoryBar';
+
 
 
 var width = Dimensions.get('window').width; //full width
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     exploreChallengesCardSection: {
-        marginTop: 16,
+        marginTop: 5,
     }
 
 });
@@ -50,6 +52,7 @@ const MyChallengesSection = () => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
+            
             <Layout style={styles.myChallengesContainer}>
                 <Text style={styles.sectionTitle}>My Challenges</Text>
                 <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
@@ -69,8 +72,9 @@ const ExploreChallengesSection = () => {
             mapping={mapping}
             theme={lightTheme}>
             <Layout style={styles.myChallengesContainer}>
-                <Text style={styles.sectionTitle}>Explore</Text>
+                <Text style={styles.sectionTitle}>Explores</Text>
             </Layout>
+            <CategoryBar />
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
                 <NewChallengeCard />
                 <NewChallengeCard />
