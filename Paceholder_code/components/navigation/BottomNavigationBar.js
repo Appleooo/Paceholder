@@ -14,12 +14,19 @@ import {
     View,
     Text,
     TouchableOpacity,
+    Image,
+    Dimensions,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
-import { Avatar } from '@ui-kitten/components';
+import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
+import { mapping, light as lightTheme } from '@eva-design/eva';
 
 Icon.loadFont();
+
+var width = Dimensions.get('window').width; //full width
+var height = Dimensions.get('window').height; //full height
+
 const styles = StyleSheet.create({
     navigationBar: {
         position: 'absolute',
@@ -38,10 +45,25 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
     },
+    headerContainer: {
+        flex: 1,
+        width: width,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf:'center',
+        justifyContent: 'space-between',
+
+    },
     headerTitle: {
         fontSize: 26,
         fontFamily: 'RobotoCondensed-Bold',
     },
+    headerAvatar: {
+        marginLeft: 18,
+    },
+    headerSearchButton: {
+        marginRight: 18,
+    }
 });
 
 const Tab = createBottomTabNavigator();
@@ -68,10 +90,15 @@ const CustomCreationTabBarButton = ({ children, onPress }) => {
 
 const HomeScreenHeader = () => {
     return (
-        <>
-            {/* <Avatar size='tiny' source={require('../../Assets/Images/Yijing.jpg')} /> */}
-            <Text style={styles.headerTitle}>Challenges</Text>
-        </>
+        <ApplicationProvider
+            mapping={mapping}
+            theme={lightTheme}>
+            <Layout style={styles.headerContainer}>
+                <Avatar style={styles.headerAvatar} source={require('../../Assets/Images/Yijing.jpg')} />
+                <Text style={styles.headerTitle}>Challenges</Text>
+                <Icon style={styles.headerSearchButton} name="search" size={24} />
+            </Layout>
+        </ApplicationProvider>
     )
 }
 
