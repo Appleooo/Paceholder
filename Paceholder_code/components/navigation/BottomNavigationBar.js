@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf:'center',
         justifyContent: 'space-between',
-
     },
     headerTitle: {
         fontSize: 26,
@@ -95,7 +94,7 @@ const HomeScreenHeader = () => {
             theme={lightTheme}>
             <Layout style={styles.headerContainer}>
                 <Avatar style={styles.headerAvatar} source={require('../../Assets/Images/Yijing.jpg')} />
-                <Text style={styles.headerTitle}>Challenges</Text>
+                <Text style={{marginLeft: -18,...styles.headerTitle}}>Challenges</Text>
                 <Icon style={styles.headerSearchButton} name="search" size={24} />
             </Layout>
         </ApplicationProvider>
