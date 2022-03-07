@@ -19,9 +19,11 @@ $ cd AwesomeProject
 
 Step 2: Start your application(2 options). 
 ```bash
-$ npx react-native run-ios 
-```
-OR 
-```bash
 $ react-native run-ios
+```
+
+## After Install a framework
+Make sure you tun pod install after npm install a framwork
+```bash
+$ npx pod-install ios
 ```
