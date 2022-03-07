@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
     myChallengesCardSection: {
-        height: 205,
+        height: 195,
         marginTop: 16,
     },
     exploreChallengesCardSection: {
-
+        marginTop: 16,
     }
 
 });

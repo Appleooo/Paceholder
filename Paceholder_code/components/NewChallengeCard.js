@@ -6,7 +6,7 @@ import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 
 const styles = StyleSheet.create({
-    joinedChallengesContainer: {
+    newChallengesContainer: {
         flex: 1,
         width: 180,
         height: 190,
@@ -17,18 +17,17 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 10,
     },
-    joinedChallengesImage: {
-        height: 130,
-        width: 180,
+    newChallengesImage: {
+        height: 110,
+        width: 150,
         borderRadius: 6,
     },
-    joinedChallengesTitle: {
+    newChallengesTitle: {
         height: 20,
         width: 180,
         flexShrink: 1,
         paddingTop: 7,
     },
-
     statusSection: {
         flexDirection: 'row',
         alignContent: 'center',
@@ -42,31 +41,19 @@ const styles = StyleSheet.create({
 
 
 });
-function showCheckInStatus(checkedInStatus) {
-    if (checkedInStatus) {
-        return (
-            <View style={styles.statusSection}>
-                <Text style={styles.joinedChallengesCheckInTitle}>Checked-in Today</Text>
-                <Icon name="check-circle" size={16} color='#E3890D' />
-            </View>
-        );
-    }
-}
 
-const JoinedChallengeCard = () => {
+const NewChallengeCard = () => {
     var checkedInStatus = true;
     return (
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            <Layout style={styles.joinedChallengesContainer}>
-                <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
-                <Text style={styles.joinedChallengesTitle}>Running 5km in two weeks rrrr</Text>
-                {showCheckInStatus(checkedInStatus)}
-
+            <Layout style={styles.newChallengesContainer}>
+                <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
+                <Text style={styles.newChallengesTitle}>Running 5km in two weeks rrrr</Text>
             </Layout>
         </ApplicationProvider>
     );
 }
 
-export default JoinedChallengeCard;
+export default NewChallengeCard;
