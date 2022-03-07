@@ -9,20 +9,24 @@ import CreationScreen from '../../screens/CreationScreen';
 import ProgressScreen from '../../screens/ProgressScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 
-import Icon from 'react-native-vector-icons/Feather';
-
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
     StyleSheet,
-    Text,
-    Image,
     View,
+    Text,
     TouchableOpacity,
+    Image,
+    Dimensions,
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Feather';
+import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
+import { mapping, light as lightTheme } from '@eva-design/eva';
+
 Icon.loadFont();
+
+var width = Dimensions.get('window').width; //full width
+var height = Dimensions.get('window').height; //full height
+
 const styles = StyleSheet.create({
     navigationBar: {
         position: 'absolute',
@@ -40,6 +44,25 @@ const styles = StyleSheet.create({
     tabButton: {
         width: 25,
         height: 25,
+    },
+    headerContainer: {
+        flex: 1,
+        width: width,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf:'center',
+        justifyContent: 'space-between',
+
+    },
+    headerTitle: {
+        fontSize: 26,
+        fontFamily: 'RobotoCondensed-Bold',
+    },
+    headerAvatar: {
+        marginLeft: 18,
+    },
+    headerSearchButton: {
+        marginRight: 18,
     }
 });
 
@@ -65,6 +88,20 @@ const CustomCreationTabBarButton = ({ children, onPress }) => {
     </TouchableOpacity>
 }
 
+const HomeScreenHeader = () => {
+    return (
+        <ApplicationProvider
+            mapping={mapping}
+            theme={lightTheme}>
+            <Layout style={styles.headerContainer}>
+                <Avatar style={styles.headerAvatar} source={require('../../Assets/Images/Yijing.jpg')} />
+                <Text style={styles.headerTitle}>Challenges</Text>
+                <Icon style={styles.headerSearchButton} name="search" size={24} />
+            </Layout>
+        </ApplicationProvider>
+    )
+}
+
 const NavigationTabs = () => {
     return (
         <>
@@ -73,6 +110,7 @@ const NavigationTabs = () => {
                     // tabBarStyle: { ...styles.navigationBar },
                     tabBarActiveTintColor: '#FF9F1C',
                     tabBarInactiveTintColor: '#A1A1A1',
+                    headerTitleStyle: { ...styles.headerTitle },
                 }}
             >
                 <Tab.Screen
@@ -83,7 +121,10 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="home" size={size} color={color} />
                         ),
+                        title: 'Challenges',
+                        headerTitle: (props) => <HomeScreenHeader />
                     }} />
+
                 <Tab.Screen
                     name="Community"
                     component={CommunityScreen}
@@ -92,6 +133,7 @@ const NavigationTabs = () => {
                             <Icon name="aperture" size={size} color={color} />
                         ),
                     }} />
+
                 <Tab.Screen
                     name="New"
                     component={CreationScreen}
@@ -102,8 +144,8 @@ const NavigationTabs = () => {
                         // tabBarButton: (props) => (
                         //     <CustomCreationTabBarButton {...props} />
                         // )
-                    }}
-                />
+                    }} />
+
                 <Tab.Screen
                     name="Progress"
                     component={ProgressScreen}
@@ -112,6 +154,7 @@ const NavigationTabs = () => {
                             <Icon name="pie-chart" size={size} color={color} />
                         ),
                     }} />
+
                 <Tab.Screen
                     name="Profile"
                     component={ProfileScreen}
