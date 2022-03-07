@@ -5,6 +5,8 @@ import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
+import NewChallengeCard from '../components/NewChallengeCard';
+
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -70,9 +72,9 @@ const ExploreChallengesSection = () => {
                 <Text style={styles.sectionTitle}>Explore</Text>
             </Layout>
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
-                <JoinedChallengeCard />
-                <JoinedChallengeCard />
-                <JoinedChallengeCard />
+                <NewChallengeCard />
+                <NewChallengeCard />
+                <NewChallengeCard />
             </ScrollView>
         </ApplicationProvider>
     );
