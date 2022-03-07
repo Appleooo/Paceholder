@@ -9,18 +9,15 @@ import CreationScreen from '../../screens/CreationScreen';
 import ProgressScreen from '../../screens/ProgressScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 
-import Icon from 'react-native-vector-icons/Feather';
-
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
     StyleSheet,
-    Text,
-    Image,
     View,
+    Text,
     TouchableOpacity,
 } from 'react-native';
+
+import Icon from 'react-native-vector-icons/Feather';
+import { Avatar } from '@ui-kitten/components';
 
 Icon.loadFont();
 const styles = StyleSheet.create({
@@ -40,7 +37,11 @@ const styles = StyleSheet.create({
     tabButton: {
         width: 25,
         height: 25,
-    }
+    },
+    headerTitle: {
+        fontSize: 26,
+        fontFamily: 'RobotoCondensed-Bold',
+    },
 });
 
 const Tab = createBottomTabNavigator();
@@ -65,6 +66,15 @@ const CustomCreationTabBarButton = ({ children, onPress }) => {
     </TouchableOpacity>
 }
 
+const HomeScreenHeader = () => {
+    return (
+        <>
+            {/* <Avatar size='tiny' source={require('../../Assets/Images/Yijing.jpg')} /> */}
+            <Text style={styles.headerTitle}>Challenges</Text>
+        </>
+    )
+}
+
 const NavigationTabs = () => {
     return (
         <>
@@ -73,6 +83,7 @@ const NavigationTabs = () => {
                     // tabBarStyle: { ...styles.navigationBar },
                     tabBarActiveTintColor: '#FF9F1C',
                     tabBarInactiveTintColor: '#A1A1A1',
+                    headerTitleStyle: { ...styles.headerTitle },
                 }}
             >
                 <Tab.Screen
@@ -83,7 +94,10 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="home" size={size} color={color} />
                         ),
+                        title: 'Challenges',
+                        headerTitle: (props) => <HomeScreenHeader />
                     }} />
+
                 <Tab.Screen
                     name="Community"
                     component={CommunityScreen}
@@ -92,6 +106,7 @@ const NavigationTabs = () => {
                             <Icon name="aperture" size={size} color={color} />
                         ),
                     }} />
+
                 <Tab.Screen
                     name="New"
                     component={CreationScreen}
@@ -102,8 +117,8 @@ const NavigationTabs = () => {
                         // tabBarButton: (props) => (
                         //     <CustomCreationTabBarButton {...props} />
                         // )
-                    }}
-                />
+                    }} />
+
                 <Tab.Screen
                     name="Progress"
                     component={ProgressScreen}
@@ -112,6 +127,7 @@ const NavigationTabs = () => {
                             <Icon name="pie-chart" size={size} color={color} />
                         ),
                     }} />
+
                 <Tab.Screen
                     name="Profile"
                     component={ProfileScreen}
