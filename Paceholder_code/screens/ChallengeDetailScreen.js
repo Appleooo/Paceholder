@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         fontFamily: 'Cabin-Regular',
-        fontSize: 15,
+        fontSize: 16,
     },
     challengeDetailImage: {
         alignContent: 'stretch',
@@ -46,6 +46,12 @@ const styles = StyleSheet.create({
         height: 20,
         width: 122,
     },
+    challengeDetailInformation: {
+        height: 90,
+        width: 340,
+        marginLeft: 25,
+        fontSize: 16,
+    },
 
 
 });
@@ -60,12 +66,13 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
-const ChallengeDetailTop = () => {
+const ChallengeDetailScreen = () => {
     var checkedInStatus = true;
     return (
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
+            <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
             <Layout style={styles.challengeDetailContainer}>
                 {/* back button and menu button*/}
                 <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
@@ -73,9 +80,11 @@ const ChallengeDetailTop = () => {
                 <Text style={styles.challengeDetailDescription}>Getting started with running! Go for a few shorter runs over
                 two weeks and get to 5 miles!</Text>
                 {showCheckInStatus(checkedInStatus)}
+                <Text style={styles.challengeDetailInformation}>Start Date: 03/01/2022 {"\n"}End Date: 03/15/2022 {"\n"}
+                People Joined: 150+ </Text>
             </Layout>
         </ApplicationProvider>
     );
 }
 
-export default ChallengeDetailTop;
+export default ChallengeDetailScreen;

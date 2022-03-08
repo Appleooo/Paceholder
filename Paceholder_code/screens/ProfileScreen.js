@@ -1,12 +1,12 @@
 import React from "react";
 import { View, ScrollView } from 'react-native';
 
-import ChallengeDetailTop from '../components/ChallengeDetailTop';
+import ChallengeDetailScreen from '../screens/ChallengeDetailScreen';
 
 const ProfileScreen = ({navigation}) => {
     return (
         <View>
-            <ChallengeDetailTop />
+            <ChallengeDetailScreen />
         </View>
     );
 }
