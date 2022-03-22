@@ -1,15 +1,19 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Dimensions } from 'react-native';
 
 import { ApplicationProvider, Autocomplete, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 
+var width = Dimensions.get('window').width; //full width
+var height = Dimensions.get('window').height; //full height
+
 const styles = StyleSheet.create({
     fieldContainer: {
         width: '100%',
         height: 40,
-        width: 310,
+        width: width - 80,
+        marginTop: 20,
         flexDirection: 'row',
         borderBottomColor: 'black',
         alignItems: 'center',
@@ -34,7 +38,7 @@ const UnderlineField = (props: Props) => {
     return (
         <View style={styles.fieldContainer} >
             <Icon name={iconName} size={20} />
-            <Text style={styles.text}>{title}</Text>
+            <TextInput style={styles.text} value={title}/>
         </View>
     );
 }
