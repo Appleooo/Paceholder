@@ -32,18 +32,16 @@ const styles = StyleSheet.create({
 type Props = Readonly<{
     iconName: string,
     placeholder: string,
-    fieldValue: string,
     handleChange: Function,
 }>;
 
 const UnderlineField = (props: Props) => {
-    const { iconName, placeholder, fieldValue, handleChange } = props;
+    const { iconName, placeholder, handleChange } = props;
     return (
         <View style={styles.fieldContainer} >
             <Icon name={iconName} size={20} />
             <TextInput
                 style={styles.text}
-                value={fieldValue}
                 placeholder={placeholder}
                 placeholderTextColor='#4B4B4B'
                 onChangeText={text => handleChange(text)} />
