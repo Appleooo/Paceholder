@@ -2,9 +2,13 @@ import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../components/navigation/AuthProvider';
 
+import { AuthContext } from '../components/navigation/AuthProvider';
 import UnderlineField from '../components/UnderlineField';
+
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -39,12 +43,14 @@ const styles = StyleSheet.create({
         width: 250,
         fontSize: 24,
         fontFamily: 'RobotoCondensed-Bold',
+        textAlign: 'center',
     },
     subtitle: {
         width: 250,
         fontSize: 16,
         fontFamily: 'Cabin-Regular',
         color: '#4B4B4B',
+        textAlign: 'center',
     },
     forgetPasswordButtonContainer: {
         width: width - 80,
@@ -74,12 +80,12 @@ const styles = StyleSheet.create({
     loginButtontext: {
         fontFamily: 'Cabin-Regular',
         fontSize: 18,
-        color: 'white',
+        color: '#4B4B4B',
     },
     otherLoginContainer: {
         marginTop: 30,
     },
-    otherLoginButton: {
+    socialLoginButton: {
         flexDirection: 'row',
         width: width - 80,
         height: 42,
@@ -89,13 +95,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    otherLoginButtontext: {
+    socialLoginButtontext: {
         fontFamily: 'Cabin-Regular',
-        fontSize: 18,
-        color: 'white',
+        fontSize: 16,
+        color: '#4B4B4B',
         paddingLeft: 7,
     },
     signupButton: {
+        justifyContent: 'center',
         flexDirection: 'row',
         marginTop: 30,
     },
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
 
 const LoginScreen = () => {
     const navigation = useNavigation();
-    const { login } = useContext(AuthContext);
+    const { login, facebookLogin } = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -124,7 +131,7 @@ const LoginScreen = () => {
                 </View>
                 <View style={styles.forgetPasswordButtonContainer}>
                     <TouchableOpacity style={styles.forgetPasswordButton}
-                    onPress={() => navigation.navigate("ForgetPassword")}>
+                        onPress={() => navigation.navigate("ForgetPassword")}>
                         <Text style={styles.forgetPasswordText}>Forget Password?</Text>
                     </TouchableOpacity>
                 </View>
@@ -142,19 +149,20 @@ const LoginScreen = () => {
 
                 <View style={styles.otherLoginContainer}>
 
-                    <TouchableOpacity style={styles.otherLoginButton}>
-                        <Icon name={"google"} size={18} color={'white'} />
-                        <Text style={styles.otherLoginButtontext}>Continue with Google</Text>
+                    <TouchableOpacity style={styles.socialLoginButton}>
+                        <Icon name={"google"} size={18} color={'#4B4B4B'} />
+                        <Text style={styles.socialLoginButtontext}>Continue with Google</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.otherLoginButton}>
-                        <Icon name={"facebook"} size={18} color={'white'} />
-                        <Text style={styles.otherLoginButtontext}>Continue with Facebook</Text>
+                    <TouchableOpacity style={styles.socialLoginButton}
+                        onPress={() => facebookLogin().then(() => console.log('Signed in with Facebook!'))}>
+                        <Icon name={"facebook"} size={18} color={'#4B4B4B'} />
+                        <Text style={styles.socialLoginButtontext}>Continue with Facebook</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.signupButton}>
-                    <Text>New to Paceholder? </Text>
+                    <Text style={{ color: 'white' }}>New to Paceholder? </Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate("Signup")}>
                         <Text style={{ color: '#FF9F1C' }}>Register</Text>
