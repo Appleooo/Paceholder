@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         width: width,
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf:'center',
+        alignSelf: 'center',
         justifyContent: 'space-between',
     },
     headerTitle: {
@@ -94,7 +94,7 @@ const HomeScreenHeader = () => {
             theme={lightTheme}>
             <Layout style={styles.headerContainer}>
                 <Avatar style={styles.headerAvatar} source={require('../../Assets/Images/Yijing.jpg')} />
-                <Text style={{marginLeft: -18,...styles.headerTitle}}>Challenges</Text>
+                <Text style={{ marginLeft: -18, ...styles.headerTitle }}>Challenges</Text>
                 <Icon style={styles.headerSearchButton} name="search" size={24} />
             </Layout>
         </ApplicationProvider>

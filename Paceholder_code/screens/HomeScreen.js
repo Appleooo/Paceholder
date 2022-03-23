@@ -8,8 +8,6 @@ import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
 import CategoryBar from '../components/CategoryBar';
 
-
-
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
 
