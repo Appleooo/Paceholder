@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
         width: 84,
         height: 44,
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
         position:'absolute',
         zIndex: 1,
         backgroundColor: '#ffbf69',
@@ -44,11 +46,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     checkInText: {
-        fontSize: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#676767',
-        flexWrap: 'wrap',
+        fontSize: 15,
+        fontFamily: 'Cabin-Regular_Medium',
     },
     challengeDetailTitle: {
         height: 28,
@@ -108,7 +107,7 @@ const ChallengeDetailScreen = () => {
             </Layout>
             <ScrollView>
             <Layout style={styles.checkInContainer}>
-                <Text style={styles.checkInText}>Join</Text>
+                <Text style={styles.checkInText}>Check-in</Text>
             </Layout>
                 <Layout style={styles.challengeDetailContainer}>
                     {/* back button and menu button*/}
