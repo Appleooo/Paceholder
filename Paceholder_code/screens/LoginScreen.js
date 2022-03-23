@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../components/navigation/AuthProvider';
 
 import UnderlineField from '../components/UnderlineField';
-import SignupScreen from './SignupScreen';
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -103,6 +103,11 @@ const styles = StyleSheet.create({
 
 const LoginScreen = () => {
     const navigation = useNavigation();
+    const { login } = useContext(AuthContext);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
         <View style={styles.body}>
             <Image source={require('../Assets/Images/Login-background.png')}
@@ -113,8 +118,8 @@ const LoginScreen = () => {
                     <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
                 </View>
                 <View>
-                    <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} />
-                    <UnderlineField iconName={"lock"} placeholder={"Password"} />
+                    <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} handleChange={setEmail} />
+                    <UnderlineField iconName={"lock"} placeholder={"Password"} handleChange={setPassword} />
 
                 </View>
                 <View style={styles.forgetPasswordButtonContainer}>
@@ -122,7 +127,8 @@ const LoginScreen = () => {
                         <Text style={styles.forgetPasswordText}>Forget Password?</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.loginButton}>
+                <TouchableOpacity style={styles.loginButton}
+                    onPress={() => login(email, password)}>
                     <Text style={styles.loginButtontext}>Login</Text>
                 </TouchableOpacity>
 
@@ -148,8 +154,8 @@ const LoginScreen = () => {
 
                 <View style={styles.signupButton}>
                     <Text>New to Paceholder? </Text>
-                    <TouchableOpacity 
-                    onPress={() => navigation.navigate("Signup")}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("Signup")}>
                         <Text style={{ color: '#FF9F1C' }}>Register</Text>
                     </TouchableOpacity>
                 </View>

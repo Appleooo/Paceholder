@@ -51,34 +51,12 @@ const styles = StyleSheet.create({
 const SignupScreen = () => {
     const navigation = useNavigation();
     const { register } = useContext(AuthContext);
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-
-    // use call back function to set state in child component
-    const handleChange = (text, type) => {
-        switch (type) {
-            case 'email':
-                setEmail(text);
-                break;
-            case 'password':
-                setPassword(text);
-                break;
-            case 'confirmPassword':
-                setConfirmPassword(text);
-                break;
-            case 'firstName':
-                setFirstName(text);
-                break;
-            case 'lastName':
-                setLastName(text);
-                break;
-        }
-
-        setEmail(email);
-    };
 
     return (
         <View style={styles.body}>
