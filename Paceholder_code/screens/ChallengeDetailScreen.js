@@ -1,11 +1,24 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions, Image } from 'react-native';
-
+import { View, StyleSheet, Text, Dimensions, Image, ScrollView } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 
 const styles = StyleSheet.create({
+    navigationContainer: {
+        width: 340,
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'space-between',
+        position:'absolute',
+        zIndex: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.0)',
+        marginLeft: 25,
+        marginRight: 25,
+        marginTop: 40,
+    },
     challengeDetailContainer: {
         flex: 1,
         flexDirection: 'column',
@@ -14,11 +27,28 @@ const styles = StyleSheet.create({
         fontFamily: 'Cabin-Regular',
         fontSize: 16,
     },
+    checkInContainer: {
+        width: 84,
+        height: 44,
+        flex: 1,
+        position:'absolute',
+        zIndex: 1,
+        backgroundColor: '#ffbf69',
+        marginLeft: 290,
+        marginTop: 210,
+    },
     challengeDetailImage: {
         alignContent: 'stretch',
         width: 390,
         height: 232,
         borderRadius: 6,
+    },
+    checkInText: {
+        fontSize: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#676767',
+        flexWrap: 'wrap',
     },
     challengeDetailTitle: {
         height: 28,
@@ -72,17 +102,25 @@ const ChallengeDetailScreen = () => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
-            <Layout style={styles.challengeDetailContainer}>
-                {/* back button and menu button*/}
-                <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
-                <Text style={styles.challengeDetailTitle}>Running 5 mi in two weeks</Text>
-                <Text style={styles.challengeDetailDescription}>Getting started with running! Go for a few shorter runs over
-                two weeks and get to 5 miles!</Text>
-                {showCheckInStatus(checkedInStatus)}
-                <Text style={styles.challengeDetailInformation}>Start Date: 03/01/2022 {"\n"}End Date: 03/15/2022 {"\n"}
-                People Joined: 150+ </Text>
+            <Layout style={styles.navigationContainer}>
+                <Icon name="arrow-left" size={30} />
+                <Icon name="menu" size={30} />
             </Layout>
+            <ScrollView>
+            <Layout style={styles.checkInContainer}>
+                <Text style={styles.checkInText}>Join</Text>
+            </Layout>
+                <Layout style={styles.challengeDetailContainer}>
+                    {/* back button and menu button*/}
+                    <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
+                    <Text style={styles.challengeDetailTitle}>Running 5 mi in two weeks</Text>
+                    <Text style={styles.challengeDetailDescription}>Getting started with running! Go for a few shorter runs over
+                    two weeks and get to 5 miles!</Text>
+                    {showCheckInStatus(checkedInStatus)}
+                    <Text style={styles.challengeDetailInformation}>Start Date: 03/01/2022 {"\n"}End Date: 03/15/2022 {"\n"}
+                    People Joined: 150+ </Text>
+                </Layout>
+            </ScrollView>
         </ApplicationProvider>
     );
 }
