@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,6 +15,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         backgroundColor: '#ffffff',
+    },
+    backgroundImage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        opacity: 0.7,
+        height: '100%',
+        width: '100%',
+        objectFit: 'cover',
     },
     welcomeSection: {
         marginTop: 110,
@@ -92,54 +103,56 @@ const styles = StyleSheet.create({
 const LoginScreen = () => {
 
     return (
-        <SafeAreaView style={styles.body}>
-            <View style={styles.welcomeSection}>
-                <Text style={styles.welcomeTitle}>Welcome to Paceholder</Text>
-                <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
-            </View>
-            <View>
-                <UnderlineField iconName={"at-sign"} title={"Email ID"} />
-                <UnderlineField iconName={"lock"} title={"Password"} />
+        <View style={styles.body}>
+            <Image source={require('../Assets/Images/Login-background.png')}
+                style={styles.backgroundImage} />
+            <SafeAreaView >
+                <View style={styles.welcomeSection}>
+                    <Text style={styles.welcomeTitle}>Welcome to Paceholder</Text>
+                    <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
+                </View>
+                <View>
+                    <UnderlineField iconName={"at-sign"} title={"Email ID"} />
+                    <UnderlineField iconName={"lock"} title={"Password"} />
 
-            </View>
-            <View style={styles.forgetPasswordButtonContainer}>
-                <TouchableOpacity style={styles.forgetPasswordButton}>
-                    <Text style={styles.forgetPasswordText}>Forget Password?</Text>
-                </TouchableOpacity>
-            </View>
-            <TouchableOpacity style={styles.loginButton}>
-                <Text style={styles.loginButtontext}>Login</Text>
-            </TouchableOpacity>
-
-            {/* Line Divider */}
-            <View style={{ flexDirection: 'row', paddingHorizontal: 40 }}>
-                <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
-                <Text style={{ alignSelf: 'center', paddingHorizontal: 5, color: '#AAAAAA', }}>Or</Text>
-                <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
-            </View>
-
-            <View style={styles.otherLoginContainer}>
-
-                <TouchableOpacity style={styles.otherLoginButton}>
-                    <Icon name={"google"} size={18} color={'white'} />
-                    <Text style={styles.otherLoginButtontext}>Continue with Google</Text>
+                </View>
+                <View style={styles.forgetPasswordButtonContainer}>
+                    <TouchableOpacity style={styles.forgetPasswordButton}>
+                        <Text style={styles.forgetPasswordText}>Forget Password?</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.loginButton}>
+                    <Text style={styles.loginButtontext}>Login</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.otherLoginButton}>
-                    <Icon name={"facebook"} size={18} color={'white'} />
-                    <Text style={styles.otherLoginButtontext}>Continue with Facebook</Text>
-                </TouchableOpacity>
-            </View>
+                {/* Line Divider */}
+                <View style={{ flexDirection: 'row', paddingHorizontal: 40 }}>
+                    <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
+                    <Text style={{ alignSelf: 'center', paddingHorizontal: 5, color: '#AAAAAA', }}>Or</Text>
+                    <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
+                </View>
 
-            <View style={styles.signupButton}>
-                <Text>New to Paceholder? </Text>
-                <TouchableOpacity>
-                    <Text style={{color: '#FF9F1C'}}>Register</Text>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.otherLoginContainer}>
 
+                    <TouchableOpacity style={styles.otherLoginButton}>
+                        <Icon name={"google"} size={18} color={'white'} />
+                        <Text style={styles.otherLoginButtontext}>Continue with Google</Text>
+                    </TouchableOpacity>
 
-        </SafeAreaView>
+                    <TouchableOpacity style={styles.otherLoginButton}>
+                        <Icon name={"facebook"} size={18} color={'white'} />
+                        <Text style={styles.otherLoginButtontext}>Continue with Facebook</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.signupButton}>
+                    <Text>New to Paceholder? </Text>
+                    <TouchableOpacity>
+                        <Text style={{ color: '#FF9F1C' }}>Register</Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+        </View>
     );
 }
 
