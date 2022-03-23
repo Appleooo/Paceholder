@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
 
 import UnderlineField from '../components/UnderlineField';
@@ -50,7 +50,35 @@ const styles = StyleSheet.create({
 
 const SignupScreen = () => {
     const navigation = useNavigation();
-    const { user, setUser } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
+    // use call back function to set state in child component
+    const handleChange = (text, type) => {
+        switch (type) {
+            case 'email':
+                setEmail(text);
+                break;
+            case 'password':
+                setPassword(text);
+                break;
+            case 'confirmPassword':
+                setConfirmPassword(text);
+                break;
+            case 'firstName':
+                setFirstName(text);
+                break;
+            case 'lastName':
+                setLastName(text);
+                break;
+        }
+
+        setEmail(email);
+    };
 
     return (
         <View style={styles.body}>
@@ -62,13 +90,15 @@ const SignupScreen = () => {
                 </TouchableOpacity>
                 <Text style={styles.SignupText}>Sign up</Text>
                 <View>
-                    <UnderlineField iconName={"at-sign"} title={"Email ID"} />
-                    <UnderlineField iconName={"lock"} title={"Password"} />
-                    <UnderlineField iconName={"lock"} title={"Re-enter Password"} />
-                    <UnderlineField iconName={"user"} title={"First Name"} />
-                    <UnderlineField iconName={"user"} title={"Last Name"} />
+                    <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} handleChange={setEmail} />
+                    <UnderlineField iconName={"lock"} placeholder={"Password"} handleChange={setPassword} />
+                    <UnderlineField iconName={"lock"} placeholder={"Confirm Password"} handleChange={setConfirmPassword} />
+                    <UnderlineField iconName={"user"} placeholder={"First Name"} handleChange={setFirstName} />
+                    <UnderlineField iconName={"user"} placeholder={"Last Name"} handleChange={setLastName} />
                 </View>
-                <TouchableOpacity style={styles.signupButton}>
+                <TouchableOpacity
+                    style={styles.signupButton}
+                    onPress={() => register(email, password)}>
                     <Text style={styles.signupButtontext}>Submit</Text>
                 </TouchableOpacity>
 

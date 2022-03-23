@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Cabin-Regular',
         fontSize: 15,
         marginLeft: 15,
+        width: '100%',
     },
 
 });
@@ -30,15 +31,22 @@ const styles = StyleSheet.create({
 // @flow
 type Props = Readonly<{
     iconName: string,
-    title: string,
+    placeholder: string,
+    fieldValue: string,
+    handleChange: Function,
 }>;
 
 const UnderlineField = (props: Props) => {
-    const {iconName, title} = props;
+    const { iconName, placeholder, fieldValue, handleChange } = props;
     return (
         <View style={styles.fieldContainer} >
             <Icon name={iconName} size={20} />
-            <TextInput style={styles.text} value={title}/>
+            <TextInput
+                style={styles.text}
+                value={fieldValue}
+                placeholder={placeholder}
+                placeholderTextColor='#4B4B4B'
+                onChangeText={text => handleChange(text)} />
         </View>
     );
 }

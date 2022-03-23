@@ -113,8 +113,8 @@ const LoginScreen = () => {
                     <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
                 </View>
                 <View>
-                    <UnderlineField iconName={"at-sign"} title={"Email ID"} />
-                    <UnderlineField iconName={"lock"} title={"Password"} />
+                    <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} />
+                    <UnderlineField iconName={"lock"} placeholder={"Password"} />
 
                 </View>
                 <View style={styles.forgetPasswordButtonContainer}>
