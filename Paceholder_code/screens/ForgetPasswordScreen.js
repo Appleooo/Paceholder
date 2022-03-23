@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         width: width - 80,
         height: 42,
         marginTop: 55,
-        marginBottom: 40,
+        marginBottom: 25,
         backgroundColor: '#4B4B4B',
         borderRadius: 12,
         alignItems: 'center',
@@ -54,6 +54,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#FFBF69',
     },
+    confirmText: {
+        fontFamily: 'Cabin-Regular',
+        fontSize: 16,
+        textAlign: 'center',
+    },
 });
 
 const ForgetPassword = () => {
@@ -61,6 +66,13 @@ const ForgetPassword = () => {
     const { forgetPassword } = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
+    const [showConfirmText, setShowConfirmText] = useState(false);
+
+
+    const submitResetPasswordRequest = (email) => {
+        forgetPassword(email);
+        setShowConfirmText(true);
+    }
 
     return (
         <View style={styles.body}>
@@ -72,16 +84,18 @@ const ForgetPassword = () => {
                 </TouchableOpacity>
                 <Text style={styles.SignupText}>Forget Password?</Text>
                 <Text style={styles.SignupSubtitleText}>Don't worry! It happens. Please enter the email address
-                    associated with your account.</Text>
-
+                    associated with your account.
+                </Text>
                 <View>
                     <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} handleChange={setEmail} />
                 </View>
                 <TouchableOpacity
                     style={styles.signupButton}
-                    onPress={() => forgetPassword(email)}>
+                    onPress={() => submitResetPasswordRequest(email)}>
                     <Text style={styles.signupButtontext}>Submit</Text>
                 </TouchableOpacity>
+
+                {showConfirmText ? <Text style={styles.confirmText}>Reset Password Email Sent</Text>: <></>}
 
 
             </SafeAreaView>
