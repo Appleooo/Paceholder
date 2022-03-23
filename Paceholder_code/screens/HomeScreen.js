@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions, ScrollView } from 'react-native';
-import { ApplicationProvider, Layout } from '@ui-kitten/components';
+import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
+import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
@@ -41,9 +41,41 @@ const styles = StyleSheet.create({
     },
     exploreChallengesCardSection: {
         marginTop: 5,
+    },
+    headerContainer: {
+        width: width,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    headerTitle: {
+        fontSize: 26,
+        fontFamily: 'RobotoCondensed-Bold',
+    },
+    headerAvatar: {
+        marginLeft: 18,
+    },
+    headerSearchButton: {
+        marginRight: 18,
     }
 
 });
+
+const HomeScreenHeader = () => {
+    return (
+        <ApplicationProvider
+            mapping={mapping}
+            theme={lightTheme}>
+            <Layout style={styles.headerContainer}>
+                <Avatar style={styles.headerAvatar} source={require('..//Assets/Images/Yijing.jpg')} />
+                <Text style={styles.headerTitle}>Challenges</Text>
+                <Icon style={styles.headerSearchButton} name="search" size={24} />
+            </Layout>
+        </ApplicationProvider>
+    )
+};
 
 const MyChallengesSection = () => {
     return (
@@ -84,12 +116,13 @@ const ExploreChallengesSection = () => {
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <View style={styles.body}>
+        <SafeAreaView style={styles.body}>
             <ScrollView>
+                <HomeScreenHeader />
                 <MyChallengesSection />
                 <ExploreChallengesSection />
             </ScrollView>
-        </View>
+        </SafeAreaView>
 
     );
 }

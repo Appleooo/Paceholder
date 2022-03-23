@@ -62,7 +62,9 @@ const JoinedChallengeCard = () => {
             mapping={mapping}
             theme={lightTheme}>
             <TouchableOpacity
-                onPress={() => navigation.navigate("JoinedChallengeDetailScreen")}>
+                onPress={() => {
+                    // navigation.navigate("JoinedChallengeDetailScreen")
+                }}>
                 <Layout style={styles.joinedChallengesContainer}>
                     <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
                     <Text style={styles.joinedChallengesTitle}>Running 5km in two weeks rrrr</Text>

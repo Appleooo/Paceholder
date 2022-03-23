@@ -63,7 +63,10 @@ const NewChallengeCard = () => {
             mapping={mapping}
             theme={lightTheme}>
             <TouchableOpacity
-                onPress={() => navigation.navigate("NewChallengeDetailScreen")}>
+                onPress={() => {
+                    // navigation.navigate("NewChallengeDetailScreen")
+                }
+                }>
                 <Layout style={styles.newChallengesContainer}>
                     <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
                     <Layout style={styles.newChallengesInfoSection}>
