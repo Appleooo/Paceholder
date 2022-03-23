@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
@@ -55,12 +56,14 @@ const styles = StyleSheet.create({
 
 const NewChallengeCard = () => {
     var checkedInStatus = true;
+    const navigation = useNavigation();
+
     return (
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
             <TouchableOpacity
-                onPress={() => { }}>
+                onPress={() => navigation.navigate("NewChallengeDetailScreen")}>
                 <Layout style={styles.newChallengesContainer}>
                     <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
                     <Layout style={styles.newChallengesInfoSection}>

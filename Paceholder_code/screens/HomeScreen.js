@@ -50,7 +50,7 @@ const MyChallengesSection = () => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            
+
             <Layout style={styles.myChallengesContainer}>
                 <Text style={styles.sectionTitle}>My Challenges</Text>
                 <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
@@ -90,6 +90,7 @@ const HomeScreen = ({ navigation }) => {
                 <ExploreChallengesSection />
             </ScrollView>
         </View>
+
     );
 }
 

@@ -8,6 +8,7 @@ import CommunityScreen from '../../screens/CommunityScreen';
 import CreationScreen from '../../screens/CreationScreen';
 import ProgressScreen from '../../screens/ProgressScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
+import HomeChallengeDetailScreenNavigation from './HomeChallengeDetailScreenNavigation';
 
 import {
     StyleSheet,

@@ -6,9 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../components/navigation/AuthProvider';
 import UnderlineField from '../components/UnderlineField';
 
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+// import { LogBox } from 'react-native';
+// LogBox.ignoreLogs(['new NativeEventEmitter']); // Ignore log notification by message
+// LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -141,7 +141,7 @@ const LoginScreen = () => {
                 </TouchableOpacity>
 
                 {/* Line Divider */}
-                <View style={{ flexDirection: 'row', paddingHorizontal: 40 }}>
+                <View style={{ flexDirection: 'row', paddingHorizontal: 0 }}>
                     <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
                     <Text style={{ alignSelf: 'center', paddingHorizontal: 5, color: '#AAAAAA', }}>Or</Text>
                     <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
