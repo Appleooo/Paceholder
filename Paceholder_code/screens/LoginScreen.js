@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
-import { ApplicationProvider, Layout } from '@ui-kitten/components';
-import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 import UnderlineField from '../components/UnderlineField';
+import SignupScreen from './SignupScreen';
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
+
 
 const styles = StyleSheet.create({
     body: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         opacity: 0.7,
         height: '100%',
         width: '100%',
-        objectFit: 'cover',
+        // objectFit: 'cover',
     },
     welcomeSection: {
         marginTop: 110,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         fontFamily: 'RobotoCondensed-Bold',
     },
     subtitle: {
-        width: 270,
+        width: 250,
         fontSize: 16,
         fontFamily: 'Cabin-Regular',
         color: '#4B4B4B',
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
 });
 
 const LoginScreen = () => {
-
+    const navigation = useNavigation();
     return (
         <View style={styles.body}>
             <Image source={require('../Assets/Images/Login-background.png')}
@@ -147,7 +148,8 @@ const LoginScreen = () => {
 
                 <View style={styles.signupButton}>
                     <Text>New to Paceholder? </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity 
+                    onPress={() => navigation.navigate("Signup")}>
                         <Text style={{ color: '#FF9F1C' }}>Register</Text>
                     </TouchableOpacity>
                 </View>

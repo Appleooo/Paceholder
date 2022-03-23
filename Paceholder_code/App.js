@@ -1,20 +1,19 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
+import React, { useContext, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomNavigationBar from './components/navigation/BottomNavigationBar';
-import LoginScreen from "./screens/LoginScreen";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Provider as PaperProvider } from 'react-native-paper';
+import { AuthProvider } from './components/navigation/AuthProvider';
+import Route from "./components/navigation/Route";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <PaperProvider>
-      <LoginScreen />
-    </PaperProvider>
-    // <NavigationContainer  >
-    //   <BottomNavigationBar />
-    // </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer  >
+        <Route />
+      </NavigationContainer>
+    </AuthProvider>
 
   );
 }
