@@ -123,7 +123,8 @@ const LoginScreen = () => {
 
                 </View>
                 <View style={styles.forgetPasswordButtonContainer}>
-                    <TouchableOpacity style={styles.forgetPasswordButton}>
+                    <TouchableOpacity style={styles.forgetPasswordButton}
+                    onPress={() => navigation.navigate("ForgetPassword")}>
                         <Text style={styles.forgetPasswordText}>Forget Password?</Text>
                     </TouchableOpacity>
                 </View>

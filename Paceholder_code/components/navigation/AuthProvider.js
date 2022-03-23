@@ -31,6 +31,13 @@ export const AuthProvider = (props) => {
                         console.log(e);
                     }
                 },
+                forgetPassword: async(email) =>{
+                    try {
+                        await auth().sendPasswordResetEmail(email);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
             }}>
             {props.children}
         </AuthContext.Provider>
