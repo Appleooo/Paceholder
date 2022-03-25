@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
         marginRight: 25,
         marginTop: 40,
     },
+    navButtons: {
+        backgroundColor: 'rgba(255, 255, 255, 0.25)',
+        borderRadius: 6,
+    },
     challengeDetailContainer: {
         flex: 1,
         flexDirection: 'column',
@@ -31,13 +35,12 @@ const styles = StyleSheet.create({
         width: 84,
         height: 44,
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         position:'absolute',
         zIndex: 1,
         backgroundColor: '#ffbf69',
         marginLeft: 290,
         marginTop: 210,
+        borderRadius: 10,
     },
     challengeDetailImage: {
         alignContent: 'stretch',
@@ -48,6 +51,13 @@ const styles = StyleSheet.create({
     checkInText: {
         fontSize: 15,
         fontFamily: 'Cabin-Regular_Medium',
+    },
+    checkInButton: {
+        width: 84,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
     },
     challengeDetailTitle: {
         height: 28,
@@ -95,6 +105,10 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
+const pressedCheckIn = () => {
+
+}
+
 const ChallengeDetailScreen = () => {
     var checkedInStatus = true;
     return (
@@ -102,12 +116,21 @@ const ChallengeDetailScreen = () => {
             mapping={mapping}
             theme={lightTheme}>
             <Layout style={styles.navigationContainer}>
-                <Icon name="arrow-left" size={30} />
-                <Icon name="menu" size={30} />
+                <TouchableOpacity>
+                    <Icon style={styles.navButtons} name="arrow-left" size={30} />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Icon style={styles.navButtons} name="menu" size={30} />
+                </TouchableOpacity>
             </Layout>
             <ScrollView>
             <Layout style={styles.checkInContainer}>
-                <Text style={styles.checkInText}>Check-in</Text>
+                <TouchableOpacity
+                    style={styles.checkInButton}
+                    onPress={pressedCheckIn}
+                >
+                    <Text style={styles.checkInText}>Check-in</Text>
+                </TouchableOpacity>
             </Layout>
                 <Layout style={styles.challengeDetailContainer}>
                     {/* back button and menu button*/}
