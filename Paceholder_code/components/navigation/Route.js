@@ -13,11 +13,10 @@ const Route = () => {
     const { user, setUser } = useContext(AuthContext);
     const [initializing, setInitializing] = useState(true);
 
-    const onAuthStateChanged =
-        (user) => {
-            setUser(user);
-            if (initializing) setInitializing(false);
-        }
+    const onAuthStateChanged = (user) => {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    }
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);

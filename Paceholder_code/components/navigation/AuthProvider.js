@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+import { firebase } from '../../firebase/config';
 
 import { LogBox } from 'react-native';
 
@@ -22,8 +23,8 @@ export const AuthProvider = (props) => {
                     try {
                         await auth().signInWithEmailAndPassword(email, password)
                             .then((response) => {
-                                const uid = response.user.uid
-                                const usersRef = firebase.firestore().collection('users')
+                                const uid = response.user.uid;
+                                const usersRef = firebase.firestore().collection('users');
                                 usersRef
                                     .doc(uid)
                                     .get()

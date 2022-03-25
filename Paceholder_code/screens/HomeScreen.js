@@ -121,7 +121,6 @@ const getuserRef = (setData) => {
         .doc(uid)
         .set(data)
         .then(() => {
-            navigation.navigate('Home', { user: data })
             setData(data)
         })
         .catch((error) => {
