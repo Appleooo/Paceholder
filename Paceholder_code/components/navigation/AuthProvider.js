@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import { firebase } from '../../firebase/config'
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
 import { LogBox } from 'react-native';
@@ -22,6 +21,22 @@ export const AuthProvider = (props) => {
                 login: async (email, password) => {
                     try {
                         await auth().signInWithEmailAndPassword(email, password)
+                            .then((response) => {
+                                const uid = response.user.uid
+                                const usersRef = firebase.firestore().collection('users')
+                                usersRef
+                                    .doc(uid)
+                                    .get()
+                                    .then(firestoreDocument => {
+                                        if (!firestoreDocument.exists) {
+                                            alert("User does not exist anymore.")
+                                            return;
+                                        }
+                                    })
+                                    .catch(error => {
+                                        alert(error)
+                                    });
+                            })
                     } catch (e) {
                         console.log(e);
                     }
@@ -42,9 +57,6 @@ export const AuthProvider = (props) => {
                                 usersRef
                                     .doc(uid)
                                     .set(data)
-                                    // .then(() => {
-                                    //     navigation.navigate('Home', { user: data })
-                                    // })
                                     .catch((error) => {
                                         alert(error)
                                     });

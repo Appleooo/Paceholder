@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -7,6 +7,8 @@ import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
 import CategoryBar from '../components/CategoryBar';
+import { firebase } from '../firebase/config';
+
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -113,8 +115,23 @@ const ExploreChallengesSection = () => {
         </ApplicationProvider>
     );
 }
+const getuserRef = (setData) => {
+    const usersRef = firebase.firestore().collection('users');
+    usersRef
+        .doc(uid)
+        .set(data)
+        .then(() => {
+            navigation.navigate('Home', { user: data })
+            setData(data)
+        })
+        .catch((error) => {
+            alert(error)
+        });
+}
 
 const HomeScreen = ({ navigation }) => {
+    const [data, setData] = useState();
+    getuserRef(setData);
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
