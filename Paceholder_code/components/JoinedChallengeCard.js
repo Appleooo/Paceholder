@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
     joinedChallengesTitle: {
         height: 20,
         width: 180,
-        flexShrink: 1,
         paddingTop: 7,
     },
 
@@ -55,16 +55,23 @@ function showCheckInStatus(checkedInStatus) {
 
 const JoinedChallengeCard = () => {
     var checkedInStatus = true;
+    const navigation = useNavigation();
+
     return (
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            <Layout style={styles.joinedChallengesContainer}>
-                <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
-                <Text style={styles.joinedChallengesTitle}>Running 5km in two weeks rrrr</Text>
-                {showCheckInStatus(checkedInStatus)}
+            <TouchableOpacity
+                onPress={() => {
+                    // navigation.navigate("JoinedChallengeDetailScreen")
+                }}>
+                <Layout style={styles.joinedChallengesContainer}>
+                    <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
+                    <Text style={styles.joinedChallengesTitle}>Running 5km in two weeks rrrr</Text>
+                    {showCheckInStatus(checkedInStatus)}
+                </Layout>
+            </TouchableOpacity>
 
-            </Layout>
         </ApplicationProvider>
     );
 }

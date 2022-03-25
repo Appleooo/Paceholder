@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
@@ -55,18 +56,27 @@ const styles = StyleSheet.create({
 
 const NewChallengeCard = () => {
     var checkedInStatus = true;
+    const navigation = useNavigation();
+
     return (
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            <Layout style={styles.newChallengesContainer}>
-                <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
-                <Layout style={styles.newChallengesInfoSection}>
-                    <Text style={styles.newChallengesTitle}>Push/ pull/ legs 3 days a week</Text>
-                    <Text style={styles.newChallengesAudienceTitle}>Joined: 100+</Text>
-                    <Text style={styles.newChallengestagTitle}>“Great beginner workout!”</Text>
+            <TouchableOpacity
+                onPress={() => {
+                    // navigation.navigate("NewChallengeDetailScreen")
+                }
+                }>
+                <Layout style={styles.newChallengesContainer}>
+                    <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
+                    <Layout style={styles.newChallengesInfoSection}>
+                        <Text style={styles.newChallengesTitle}>Push/ pull/ legs 3 days a week</Text>
+                        <Text style={styles.newChallengesAudienceTitle}>Joined: 100+</Text>
+                        <Text style={styles.newChallengestagTitle}>“Great beginner workout!”</Text>
+                    </Layout>
                 </Layout>
-            </Layout>
+            </TouchableOpacity>
+
         </ApplicationProvider>
     );
 }

@@ -1,16 +1,20 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
+import React, { useContext, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomNavigationBar from './components/navigation/BottomNavigationBar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { AuthProvider } from './components/navigation/AuthProvider';
+import Route from "./components/navigation/Route";
 
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer  >
-      <BottomNavigationBar />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer  >
+        <Route />
+      </NavigationContainer>
+    </AuthProvider>
+
   );
 }
 

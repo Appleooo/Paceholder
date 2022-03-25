@@ -12,6 +12,9 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
+#import <Firebase.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -27,6 +30,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
@@ -47,7 +51,16 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  [[FBSDKApplicationDelegate shareInstance] application:application didFinishLauchingWithOptions: launchOptions];
   return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                        openURL:url
+                                              sourceApplication:sourceApplication
+                                                     annotation:annotation];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

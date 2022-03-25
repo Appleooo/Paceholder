@@ -79,5 +79,21 @@
 		<string>Cabin-Regular.ttf</string>
 		<string>Cabin-Medium.ttf</string>
 	</array>
+  
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>fb1110269589516800</string>
+    </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>1110269589516800</string>
+  <key>FacebookClientToken</key>
+  <string>50bc6d5ad4d63a9e249bd79740c3718d</string>
+  <key>FacebookDisplayName</key>
+  <string>Paceholder</string>
 </dict>
 </plist>

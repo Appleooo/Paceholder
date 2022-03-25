@@ -12,9 +12,9 @@ $ sudo gem install cocoapods
 
 ## Run IOS App 
 
-Step 1: Go to AwesomeProject folder:
+Step 1: Go to Paceholder_code folder:
 ```bash
-$ cd AwesomeProject 
+$ cd Paceholder_code
 ```
 
 Step 2: Start your application(2 options). 
@@ -26,4 +26,9 @@ $ react-native run-ios
 Make sure you tun pod install after npm install a framwork
 ```bash
 $ npx pod-install ios
+```
+
+## After add Font
+```bash
+$ react-native link
 ```

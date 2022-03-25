@@ -1,22 +1,19 @@
-import React from "react";
-import { View, StyleSheet, ScrollView } from 'react-native';
 
-import ChallengeDetailScreen from '../screens/ChallengeDetailScreen';
+import React, { useContext } from "react";
+import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
+import { AuthContext } from '../components/navigation/AuthProvider';
 
-const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#ffffff',
-    },
-});
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({ navigation }) => {
+    const { logout } = useContext(AuthContext);
+
     return (
-        <View style={styles.body}>
-            <ChallengeDetailScreen />
-        </View>
+        <SafeAreaView>
+            <TouchableOpacity
+                onPress={() => logout()}>
+                <Text >Logout</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     );
 }
 

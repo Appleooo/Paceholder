@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
 
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
@@ -32,16 +32,20 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 5,
     },
-    
+
 
 });
 
 const CategoryTab = (data) => {
     return (
-        <View style={styles.categoryTabContainer}>
-            <Icon style={styles.categoryIcon} name="running" size={20} />
-            <Text style={styles.categoryTitle}>Running</Text>
-        </View>
+        <TouchableOpacity
+            onPress={() => { }}>
+            <View style={styles.categoryTabContainer}>
+                <Icon style={styles.categoryIcon} name="running" size={20} />
+                <Text style={styles.categoryTitle}>Running</Text>
+            </View>
+        </TouchableOpacity>
+
     );
 }
 
