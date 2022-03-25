@@ -33,6 +33,7 @@
 		A61145438B3B4B8EA93ABCEE /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91AEC29719824E39B31D1BE2 /* Ionicons.ttf */; };
 		BA5687522EB74A1F95EA3833 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50BECA79FFFE48CA8BA92765 /* AntDesign.ttf */; };
 		C9687FBAFB494960B23CCE7E /* Cabin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78C2387A9DAA4E76A6230064 /* Cabin-Regular.ttf */; };
+		CB28CE0727EBB24F005031D7 /* Cabin-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB28CE0627EBB24F005031D7 /* Cabin-Medium.ttf */; };
 		D2D7880298584D1EB5416853 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EC4552BCBE4177BCD5F529 /* RobotoCondensed-LightItalic.ttf */; };
 		DD6927EC4A8C455F84530E28 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3392371C99249C2AEE40157 /* Octicons.ttf */; };
 		E1E699AF250648D1AEBE7C20 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C875C2849243488BAC87202B /* EvilIcons.ttf */; };
@@ -85,6 +86,7 @@
 		BE38169A22AD45EAB2F582EB /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-Italic.ttf"; path = "../assets/fonts/RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		C0EC4552BCBE4177BCD5F529 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-LightItalic.ttf"; path = "../assets/fonts/RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		C875C2849243488BAC87202B /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		CB28CE0627EBB24F005031D7 /* Cabin-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cabin-Medium.ttf"; path = "../Assets/Fonts/Cabin-Medium.ttf"; sourceTree = "<group>"; };
 		CBAAD6146062968598679FA8 /* Pods-Paceholder_code.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paceholder_code.debug.xcconfig"; path = "Target Support Files/Pods-Paceholder_code/Pods-Paceholder_code.debug.xcconfig"; sourceTree = "<group>"; };
 		D041651442164ECABE81FA6C /* Cabin-Regular-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Cabin-Regular-Italic.ttf"; path = "../assets/fonts/Cabin-Regular-Italic.ttf"; sourceTree = "<group>"; };
 		DD7CC124A1EC44F690D96592 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				E316518D2CF34EAD8296E5F2 /* Zocial.ttf */,
 				D041651442164ECABE81FA6C /* Cabin-Regular-Italic.ttf */,
 				78C2387A9DAA4E76A6230064 /* Cabin-Regular.ttf */,
+				CB28CE0627EBB24F005031D7 /* Cabin-Medium.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB28CE0727EBB24F005031D7 /* Cabin-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1C82B99168B241419789BD80 /* RobotoCondensed-Bold.ttf in Resources */,

@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { AuthContext } from '../components/navigation/AuthProvider';
