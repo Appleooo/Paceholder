@@ -38,7 +38,6 @@
 		E1E699AF250648D1AEBE7C20 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C875C2849243488BAC87202B /* EvilIcons.ttf */; };
 		E3510E11A81048A8A03E6CDE /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3014514453304D98B8E67222 /* RobotoCondensed-Regular.ttf */; };
 		E5ACE39E27EAC8EF00E714A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */; };
-		E5ACE3A027EAC92400E714A4 /* Downloads in Resources */ = {isa = PBXBuildFile; fileRef = E5ACE39F27EAC92400E714A4 /* Downloads */; };
 		F5F2C964AC0A55D1564CEC6E /* libPods-Paceholder_code-Paceholder_codeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 719AF175DC8983582B5CA2E6 /* libPods-Paceholder_code-Paceholder_codeTests.a */; };
 /* End PBXBuildFile section */
 
@@ -91,8 +90,8 @@
 		DD7CC124A1EC44F690D96592 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		E316518D2CF34EAD8296E5F2 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E3392371C99249C2AEE40157 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		E519CDE627EB7C7A00302D15 /* Paceholder_code-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Paceholder_code-Bridging-Header.h"; sourceTree = "<group>"; };
 		E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E5ACE39F27EAC92400E714A4 /* Downloads */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Downloads; sourceTree = "<group>"; };
 		EA52122903284BAA989647C5 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F53A89B46AAD6441AFDB1253 /* libPods-Paceholder_code.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Paceholder_code.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +143,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E519CDE627EB7C7A00302D15 /* Paceholder_code-Bridging-Header.h */,
 			);
 			name = Paceholder_code;
 			sourceTree = "<group>";
@@ -200,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */,
-				E5ACE39F27EAC92400E714A4 /* Downloads */,
 				13B07FAE1A68108700A75B9A /* Paceholder_code */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Paceholder_codeTests */,
@@ -294,7 +293,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -341,7 +340,6 @@
 				3EA7AC7CDA2E4750888DF518 /* Entypo.ttf in Resources */,
 				E1E699AF250648D1AEBE7C20 /* EvilIcons.ttf in Resources */,
 				E5ACE39E27EAC8EF00E714A4 /* GoogleService-Info.plist in Resources */,
-				E5ACE3A027EAC92400E714A4 /* Downloads in Resources */,
 				800A9474806346C097ECB2DF /* Feather.ttf in Resources */,
 				89DC0B463E834C3DA8E455C3 /* FontAwesome.ttf in Resources */,
 				1778F062DEEF468185BA771E /* FontAwesome5_Brands.ttf in Resources */,
@@ -623,6 +621,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Paceholder_code;
+				SWIFT_OBJC_BRIDGING_HEADER = "Paceholder_code-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -648,6 +647,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Paceholder_code;
+				SWIFT_OBJC_BRIDGING_HEADER = "Paceholder_code-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

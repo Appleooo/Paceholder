@@ -7,12 +7,12 @@ const ProfileScreen = ({ navigation }) => {
     const { logout } = useContext(AuthContext);
 
     return (
-        <View>
+        <SafeAreaView>
             <TouchableOpacity
                 onPress={() => logout()}>
                 <Text >Logout</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 }
 

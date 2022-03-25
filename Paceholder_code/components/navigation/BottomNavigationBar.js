@@ -8,6 +8,7 @@ import CommunityScreen from '../../screens/CommunityScreen';
 import CreationScreen from '../../screens/CreationScreen';
 import ProgressScreen from '../../screens/ProgressScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
+import HomeChallengeDetailScreenNavigation from './HomeChallengeDetailScreenNavigation';
 
 import {
     StyleSheet,
@@ -19,7 +20,6 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
-import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 
 Icon.loadFont();
@@ -45,24 +45,7 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
     },
-    headerContainer: {
-        flex: 1,
-        width: width,
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignSelf: 'center',
-        justifyContent: 'space-between',
-    },
-    headerTitle: {
-        fontSize: 26,
-        fontFamily: 'RobotoCondensed-Bold',
-    },
-    headerAvatar: {
-        marginLeft: 18,
-    },
-    headerSearchButton: {
-        marginRight: 18,
-    }
+    
 });
 
 const Tab = createBottomTabNavigator();
@@ -87,19 +70,6 @@ const CustomCreationTabBarButton = ({ children, onPress }) => {
     </TouchableOpacity>
 }
 
-const HomeScreenHeader = () => {
-    return (
-        <ApplicationProvider
-            mapping={mapping}
-            theme={lightTheme}>
-            <Layout style={styles.headerContainer}>
-                <Avatar style={styles.headerAvatar} source={require('../../Assets/Images/Yijing.jpg')} />
-                <Text style={{ marginLeft: -18, ...styles.headerTitle }}>Challenges</Text>
-                <Icon style={styles.headerSearchButton} name="search" size={24} />
-            </Layout>
-        </ApplicationProvider>
-    )
-}
 
 const NavigationTabs = () => {
     return (
@@ -110,6 +80,7 @@ const NavigationTabs = () => {
                     tabBarActiveTintColor: '#FF9F1C',
                     tabBarInactiveTintColor: '#A1A1A1',
                     headerTitleStyle: { ...styles.headerTitle },
+                    headerShown: false,
                 }}
             >
                 <Tab.Screen
