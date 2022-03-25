@@ -48,10 +48,18 @@ const styles = StyleSheet.create({
     },
 });
 
+const onSignupButtonPress = (register, email, password, confirmPassword, lastName, firstName) => {
+    if (password !== confirmPassword) {
+        alert("Passwords don't match.")
+        return
+    }
+    register(email, password, lastName, firstName)
+}
+
 const SignupScreen = () => {
     const navigation = useNavigation();
     const { register } = useContext(AuthContext);
-    
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -76,7 +84,7 @@ const SignupScreen = () => {
                 </View>
                 <TouchableOpacity
                     style={styles.signupButton}
-                    onPress={() => register(email, password)}>
+                    onPress={() => onSignupButtonPress(register, email, password, confirmPassword, lastName, firstName)}>
                     <Text style={styles.signupButtontext}>Submit</Text>
                 </TouchableOpacity>
 

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import { firebase } from '../../firebase/config'
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
 import { LogBox } from 'react-native';
@@ -25,9 +26,29 @@ export const AuthProvider = (props) => {
                         console.log(e);
                     }
                 },
-                register: async (email, password) => {
+                register: async (email, password, lastName, firstName) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password)
+                            .then((response) => {
+                                const uid = response.user.uid
+                                // store user data to firebase
+                                const data = {
+                                    id: uid,
+                                    email,
+                                    lastName,
+                                    firstName,
+                                };
+                                const usersRef = firebase.firestore().collection('users')
+                                usersRef
+                                    .doc(uid)
+                                    .set(data)
+                                    // .then(() => {
+                                    //     navigation.navigate('Home', { user: data })
+                                    // })
+                                    .catch((error) => {
+                                        alert(error)
+                                    });
+                            })
                     } catch (e) {
                         console.log(e);
                     }
