@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         width: 122,
     },
     challengeDetailInformation: {
-        height: 90,
+        height: 30,
         width: 340,
         marginLeft: 25,
         fontSize: 16,
@@ -119,6 +119,7 @@ const pressedCheckIn = () => {
 const JoinedChallengeDetailScreen = () => {
     var checkedInStatus = true;
     const navigation = useNavigation();
+    const challengeInfo = require('../data/joinedChallenge.json');
 
     return (
         <ApplicationProvider
@@ -146,12 +147,12 @@ const JoinedChallengeDetailScreen = () => {
                 <Layout style={styles.challengeDetailContainer}>
                     {/* back button and menu button*/}
                     <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
-                    <Text style={styles.challengeDetailTitle}>Running 5 mi in two weeks</Text>
-                    <Text style={styles.challengeDetailDescription}>Getting started with running! Go for a few shorter runs over
-                        two weeks and get to 5 miles!</Text>
+                    <Text style={styles.challengeDetailTitle}>{challengeInfo.name}</Text>
+                    <Text style={styles.challengeDetailDescription}>{challengeInfo.challengeDescription}</Text>
                     {showCheckInStatus(checkedInStatus)}
-                    <Text style={styles.challengeDetailInformation}>Start Date: 03/01/2022 {"\n"}End Date: 03/15/2022 {"\n"}
-                        People Joined: 150+ </Text>
+                    <Text style={styles.challengeDetailInformation}>Start Date: {challengeInfo.startDate}</Text>
+                    <Text style={styles.challengeDetailInformation}>End Date: {challengeInfo.endDate}</Text>
+                    <Text style={styles.challengeDetailInformation}>People Joined: {challengeInfo.participantList.length} </Text>
                 </Layout>
             </ScrollView>
         </ApplicationProvider>
