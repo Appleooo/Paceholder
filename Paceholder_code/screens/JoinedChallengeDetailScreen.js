@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.0)',
         marginLeft: 25,
         marginRight: 25,
-        marginTop: 40,
+        marginTop: 50,
     },
     backButton: {
         backgroundColor: 'rgba(255, 255, 255, 0.26)',
