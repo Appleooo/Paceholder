@@ -64,7 +64,7 @@ const NewChallengeCard = () => {
             theme={lightTheme}>
             <TouchableOpacity
                 onPress={() => {
-                    // navigation.navigate("NewChallengeDetailScreen")
+                    navigation.navigate("NewChallengeScreen")
                 }
                 }>
                 <Layout style={styles.newChallengesContainer}>
