@@ -86,7 +86,7 @@ const NavigationTabs = () => {
                 <Tab.Screen
                     name="Home"
                     initalRouteName="Home"
-                    component={HomeScreen}
+                    component={HomeChallengeDetailScreenNavigation}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="home" size={size} color={color} />

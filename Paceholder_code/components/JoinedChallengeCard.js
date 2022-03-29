@@ -63,7 +63,7 @@ const JoinedChallengeCard = () => {
             theme={lightTheme}>
             <TouchableOpacity
                 onPress={() => {
-                    // navigation.navigate("JoinedChallengeDetailScreen")
+                    navigation.navigate("JoinedChallengeScreen")
                 }}>
                 <Layout style={styles.joinedChallengesContainer}>
                     <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
