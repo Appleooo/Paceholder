@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -7,8 +7,10 @@ import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
 import CategoryBar from '../components/CategoryBar';
-import { firebase } from '../firebase/config';
+import { AuthContext } from '../components/navigation/AuthProvider';
 
+import firebase from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
@@ -115,22 +117,24 @@ const ExploreChallengesSection = () => {
         </ApplicationProvider>
     );
 }
-const getuserRef = (setData) => {
-    const usersRef = firebase.firestore().collection('users');
-    usersRef
-        .doc(uid)
-        .set(data)
-        .then(() => {
-            setData(data)
-        })
-        .catch((error) => {
-            alert(error)
-        });
+
+function onResult(QuerySnapshot) {
+    console.log('Got Users collection result.');
+}
+
+function onError(error) {
+    console.error(error);
 }
 
 const HomeScreen = ({ navigation }) => {
     const [data, setData] = useState();
-    getuserRef(setData);
+    const { user, setUser } = useContext(AuthContext);
+
+    // setUser(null);
+    // console.log(user.uid);
+    // console.log(firebase.apps.length);
+    // const a = firebase.firestore().collection('users').doc(user.uid).get()
+
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>

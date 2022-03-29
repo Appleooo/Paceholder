@@ -20,7 +20,6 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.1",
     "@ui-kitten/components": "^5.1.1",
-    "firebase": "^9.6.9",
     "react": "17.0.2",
     "react-native": "0.67.3",
     "react-native-fbsdk-next": "^7.3.3",
