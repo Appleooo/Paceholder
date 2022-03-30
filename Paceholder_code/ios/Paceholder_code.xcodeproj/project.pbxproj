@@ -38,7 +38,8 @@
 		DD6927EC4A8C455F84530E28 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3392371C99249C2AEE40157 /* Octicons.ttf */; };
 		E1E699AF250648D1AEBE7C20 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C875C2849243488BAC87202B /* EvilIcons.ttf */; };
 		E3510E11A81048A8A03E6CDE /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3014514453304D98B8E67222 /* RobotoCondensed-Regular.ttf */; };
-		E5ACE39E27EAC8EF00E714A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */; };
+		E54CC71E27F3D2B100063CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54CC71D27F3D2B100063CBE /* Assets.xcassets */; };
+		E54CC72027F3D42400063CBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E54CC71F27F3D42400063CBE /* GoogleService-Info.plist */; };
 		F5F2C964AC0A55D1564CEC6E /* libPods-Paceholder_code-Paceholder_codeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 719AF175DC8983582B5CA2E6 /* libPods-Paceholder_code-Paceholder_codeTests.a */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +94,8 @@
 		E316518D2CF34EAD8296E5F2 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E3392371C99249C2AEE40157 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		E519CDE627EB7C7A00302D15 /* Paceholder_code-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Paceholder_code-Bridging-Header.h"; sourceTree = "<group>"; };
-		E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E54CC71D27F3D2B100063CBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/AppIcons/Assets.xcassets; sourceTree = "<group>"; };
+		E54CC71F27F3D42400063CBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EA52122903284BAA989647C5 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F53A89B46AAD6441AFDB1253 /* libPods-Paceholder_code.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Paceholder_code.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 		13B07FAE1A68108700A75B9A /* Paceholder_code */ = {
 			isa = PBXGroup;
 			children = (
+				E54CC71D27F3D2B100063CBE /* Assets.xcassets */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -202,7 +205,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E5ACE39D27EAC8EF00E714A4 /* GoogleService-Info.plist */,
+				E54CC71F27F3D42400063CBE /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Paceholder_code */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* Paceholder_codeTests */,
@@ -335,6 +338,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1C82B99168B241419789BD80 /* RobotoCondensed-Bold.ttf in Resources */,
+				E54CC72027F3D42400063CBE /* GoogleService-Info.plist in Resources */,
 				1E12A170A8234B08B17B794F /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				A0D7FD3DAC904481BCB7CB7D /* RobotoCondensed-Italic.ttf in Resources */,
 				86FB10B040F8447ABDDCE926 /* RobotoCondensed-Light.ttf in Resources */,
@@ -343,7 +347,6 @@
 				BA5687522EB74A1F95EA3833 /* AntDesign.ttf in Resources */,
 				3EA7AC7CDA2E4750888DF518 /* Entypo.ttf in Resources */,
 				E1E699AF250648D1AEBE7C20 /* EvilIcons.ttf in Resources */,
-				E5ACE39E27EAC8EF00E714A4 /* GoogleService-Info.plist in Resources */,
 				800A9474806346C097ECB2DF /* Feather.ttf in Resources */,
 				89DC0B463E834C3DA8E455C3 /* FontAwesome.ttf in Resources */,
 				1778F062DEEF468185BA771E /* FontAwesome5_Brands.ttf in Resources */,
@@ -357,6 +360,7 @@
 				DD6927EC4A8C455F84530E28 /* Octicons.ttf in Resources */,
 				18F4CD3FFA6F45D58EF23714 /* SimpleLineIcons.ttf in Resources */,
 				17335939A7804B9B98B116BE /* Zocial.ttf in Resources */,
+				E54CC71E27F3D2B100063CBE /* Assets.xcassets in Resources */,
 				1C264D7ED7F4455B8F7A59D8 /* Cabin-Regular-Italic.ttf in Resources */,
 				C9687FBAFB494960B23CCE7E /* Cabin-Regular.ttf in Resources */,
 			);
@@ -612,6 +616,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7C7CTX89TS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Paceholder_code/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -639,6 +644,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7C7CTX89TS;
 				INFOPLIST_FILE = Paceholder_code/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

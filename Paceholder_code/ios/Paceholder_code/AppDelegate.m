@@ -52,16 +52,9 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  [[FBSDKApplicationDelegate shareInstance] application:application didFinishLauchingWithOptions: launchOptions];
   return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                        openURL:url
-                                              sourceApplication:sourceApplication
-                                                     annotation:annotation];
-}
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
