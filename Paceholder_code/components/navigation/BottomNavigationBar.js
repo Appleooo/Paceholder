@@ -95,16 +95,16 @@ const NavigationTabs = () => {
                         headerTitle: (props) => <HomeScreenHeader />
                     }} />
 
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Community"
                     component={CommunityScreen}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="aperture" size={size} color={color} />
                         ),
-                    }} />
+                    }} /> */}
 
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="New"
                     component={CreationScreen}
                     options={{
@@ -123,7 +123,7 @@ const NavigationTabs = () => {
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="pie-chart" size={size} color={color} />
                         ),
-                    }} />
+                    }} /> */}
 
                 <Tab.Screen
                     name="Profile"

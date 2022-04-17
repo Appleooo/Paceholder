@@ -1,10 +1,10 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
-const CreationScreen = ({navigation}) => {
+const CreationScreen = ({ navigation }) => {
     return (
         <View>
-            
+            <Text>Creation Page</Text>
         </View>
     );
 }

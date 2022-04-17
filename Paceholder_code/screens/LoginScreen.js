@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, Dimensions, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { AuthContext } from '../components/navigation/AuthProvider';
@@ -21,6 +20,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: '#ffffff',
     },
+    scrollView: {
+        width: width,
+        height: height,
+        position: 'relative',
+    },
     backgroundImage: {
         position: 'absolute',
         top: 0,
@@ -28,8 +32,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         opacity: 0.7,
-        height: '100%',
-        width: '100%',
+        height: height,
+        width: width,
         // objectFit: 'cover',
     },
     welcomeSection: {
@@ -119,56 +123,58 @@ const LoginScreen = () => {
         <View style={styles.body}>
             <Image source={require('../Assets/Images/Login-background.png')}
                 style={styles.backgroundImage} />
-            <SafeAreaView >
-                <View style={styles.welcomeSection}>
-                    <Text style={styles.welcomeTitle}>Welcome to Paceholder</Text>
-                    <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
-                </View>
-                <View>
-                    <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} handleChange={setEmail} />
-                    <UnderlineField iconName={"lock"} placeholder={"Password"} handleChange={setPassword} />
+            <ScrollView style={styles.scrollView} alignItems="center" justifyContent="center">
+                <SafeAreaView >
+                    <View style={styles.welcomeSection}>
+                        <Text style={styles.welcomeTitle}>Welcome to Paceholder</Text>
+                        <Text style={styles.subtitle}>There's always a new challenge to keep you motivated.</Text>
+                    </View>
+                    <View>
+                        <UnderlineField iconName={"at-sign"} placeholder={"Email ID"} handleChange={setEmail} />
+                        <UnderlineField iconName={"lock"} placeholder={"Password"} handleChange={setPassword} />
 
-                </View>
-                <View style={styles.forgetPasswordButtonContainer}>
-                    <TouchableOpacity style={styles.forgetPasswordButton}
-                        onPress={() => navigation.navigate("ForgetPassword")}>
-                        <Text style={styles.forgetPasswordText}>Forget Password?</Text>
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.loginButton}
-                    onPress={() => login(email, password)}>
-                    <Text style={styles.loginButtontext}>Login</Text>
-                </TouchableOpacity>
-
-                {/* Line Divider */}
-                <View style={{ flexDirection: 'row', paddingHorizontal: 0 }}>
-                    <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
-                    <Text style={{ alignSelf: 'center', paddingHorizontal: 5, color: '#AAAAAA', }}>Or</Text>
-                    <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
-                </View>
-
-                <View style={styles.otherLoginContainer}>
-
-                    <TouchableOpacity style={styles.socialLoginButton}>
-                        <Icon name={"google"} size={18} color={'#4B4B4B'} />
-                        <Text style={styles.socialLoginButtontext}>Continue with Google</Text>
+                    </View>
+                    <View style={styles.forgetPasswordButtonContainer}>
+                        <TouchableOpacity style={styles.forgetPasswordButton}
+                            onPress={() => navigation.navigate("ForgetPassword")}>
+                            <Text style={styles.forgetPasswordText}>Forget Password?</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={styles.loginButton}
+                        onPress={() => login(email, password)}>
+                        <Text style={styles.loginButtontext}>Login</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.socialLoginButton}
-                        onPress={() => facebookLogin().then(() => console.log('Signed in with Facebook!'))}>
-                        <Icon name={"facebook"} size={18} color={'#4B4B4B'} />
-                        <Text style={styles.socialLoginButtontext}>Continue with Facebook</Text>
-                    </TouchableOpacity>
-                </View>
+                    {/* Line Divider */}
+                    {/* <View style={{ flexDirection: 'row', paddingHorizontal: 0 }}>
+                        <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
+                        <Text style={{ alignSelf: 'center', paddingHorizontal: 5, color: '#AAAAAA', }}>Or</Text>
+                        <View style={{ backgroundColor: '#AAAAAA', height: 1, flex: 1, alignSelf: 'center' }} />
+                    </View> */}
 
-                <View style={styles.signupButton}>
-                    <Text style={{ color: 'white' }}>New to Paceholder? </Text>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("Signup")}>
-                        <Text style={{ color: '#FF9F1C' }}>Register</Text>
-                    </TouchableOpacity>
-                </View>
-            </SafeAreaView>
+                    <View style={styles.otherLoginContainer}>
+
+                        {/* <TouchableOpacity style={styles.socialLoginButton}>
+                            <Icon name={"google"} size={18} color={'#4B4B4B'} />
+                            <Text style={styles.socialLoginButtontext}>Continue with Google</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.socialLoginButton}
+                            onPress={() => facebookLogin().then(() => console.log('Signed in with Facebook!'))}>
+                            <Icon name={"facebook"} size={18} color={'#4B4B4B'} />
+                            <Text style={styles.socialLoginButtontext}>Continue with Facebook</Text>
+                        </TouchableOpacity> */}
+                    </View>
+
+                    <View style={styles.signupButton}>
+                        <Text style={{ color: 'white' }}>New to Paceholder? </Text>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("Signup")}>
+                            <Text style={{ color: '#FF9F1C' }}>Register</Text>
+                        </TouchableOpacity>
+                    </View>
+                </SafeAreaView>
+            </ScrollView>
         </View>
     );
 }
