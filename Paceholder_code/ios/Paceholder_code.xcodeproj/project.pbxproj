@@ -33,6 +33,7 @@
 		A61145438B3B4B8EA93ABCEE /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91AEC29719824E39B31D1BE2 /* Ionicons.ttf */; };
 		BA5687522EB74A1F95EA3833 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50BECA79FFFE48CA8BA92765 /* AntDesign.ttf */; };
 		C9687FBAFB494960B23CCE7E /* Cabin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78C2387A9DAA4E76A6230064 /* Cabin-Regular.ttf */; };
+		C9D4183E9B7463BC3578F0F1 /* libPods-Paceholder_code.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 882A07CAA9BCA3042C29E4EE /* libPods-Paceholder_code.a */; };
 		CB28CE0727EBB24F005031D7 /* Cabin-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB28CE0627EBB24F005031D7 /* Cabin-Medium.ttf */; };
 		CBE6053A27F3DD93002C88BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBE6053927F3DD93002C88BF /* GoogleService-Info.plist */; };
 		D2D7880298584D1EB5416853 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EC4552BCBE4177BCD5F529 /* RobotoCondensed-LightItalic.ttf */; };
@@ -78,6 +79,7 @@
 		7419B1B9011E4B7881C4BC0F /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoCondensed-Light.ttf"; path = "../assets/fonts/RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
 		78C2387A9DAA4E76A6230064 /* Cabin-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Cabin-Regular.ttf"; path = "../assets/fonts/Cabin-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Paceholder_code/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		882A07CAA9BCA3042C29E4EE /* libPods-Paceholder_code.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Paceholder_code.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F763596D5F4891A5F9DF28 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		91AEC29719824E39B31D1BE2 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9BD5D95EE65E3EDC9254F438 /* Pods-Paceholder_code.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Paceholder_code.release.xcconfig"; path = "Target Support Files/Pods-Paceholder_code/Pods-Paceholder_code.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ADA9D53A73267B392E95DD1 /* libPods-Paceholder_code.a in Frameworks */,
+				C9D4183E9B7463BC3578F0F1 /* libPods-Paceholder_code.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +159,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				F53A89B46AAD6441AFDB1253 /* libPods-Paceholder_code.a */,
 				719AF175DC8983582B5CA2E6 /* libPods-Paceholder_code-Paceholder_codeTests.a */,
+				882A07CAA9BCA3042C29E4EE /* libPods-Paceholder_code.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

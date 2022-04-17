@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import {Calendar} from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
 import firestore from '@react-native-firebase/firestore';
 
 const styles = StyleSheet.create({
@@ -126,9 +126,9 @@ const JoinedChallengeDetailScreen = () => {
     const startingDate = challengeInfo.startDate;
     const endingDate = challengeInfo.endDate;
     var markedDatesDict = {};
-    markedDatesDict[challengeInfo.startDate] = {startingDay: true, color: 'green', endingDay: true};
+    markedDatesDict[challengeInfo.startDate] = { startingDay: true, color: 'green', endingDay: true };
     for (var date of challengeInfo.checkedinList) {
-        markedDatesDict[date] = {startingDay: true, color: 'orange', endingDay: true};
+        markedDatesDict[date] = { startingDay: true, color: 'orange', endingDay: true };
     }
     firestore().collection('joinedChallenges').doc("GJemMnYLodC3P6OaywYB").get()
         .then(documentSnapshot => {
@@ -173,26 +173,26 @@ const JoinedChallengeDetailScreen = () => {
                     <Text style={styles.challengeDetailInformation}>People Joined: {challengeInfo.participantList.length} </Text>
                 </Layout>
                 <Calendar
-                        // Initially visible month. Default = now
-                        current={startingDate}
-                        minDate={startingDate}
-                        // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-                        maxDate={endingDate}
-                        disableAllTouchEventsForDisabledDays={true}
-                        onDayPress={day => {
-                            // console.log('selected day', day);
-                        }}
-                        // disableArrowLeft={true}
-                        // disableArrowRight={true}
-                        theme={{
-                            todayTextColor: '#ffbf69',
-                        }}
-                        markingType={'period'}
-                        markedDates = {markedDatesDict}
-                        // markedDates={{
-                        //     startDate: {startingDay: true, color: 'green', endingDay: true}
-                        // }}
-/>
+                    // Initially visible month. Default = now
+                    current={startingDate}
+                    minDate={startingDate}
+                    // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+                    maxDate={endingDate}
+                    disableAllTouchEventsForDisabledDays={true}
+                    onDayPress={day => {
+                        // console.log('selected day', day);
+                    }}
+                    // disableArrowLeft={true}
+                    // disableArrowRight={true}
+                    theme={{
+                        todayTextColor: '#ffbf69',
+                    }}
+                    markingType={'period'}
+                    markedDates={markedDatesDict}
+                // markedDates={{
+                //     startDate: {startingDay: true, color: 'green', endingDay: true}
+                // }}
+                />
             </ScrollView>
         </ApplicationProvider>
     );
