@@ -149,8 +149,8 @@ const NewChallengeDetailScreen = () => {
                     <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
                     <Text style={styles.challengeDetailTitle}>{challengeInfo.name}</Text>
                     <Text style={styles.challengeDetailDescription}>{challengeInfo.challengeDescription}</Text>
-                    <Text style={styles.challengeDetailInformation}>Start Date: {challengeInfo.startDate}</Text>
-                    <Text style={styles.challengeDetailInformation}>End Date: {challengeInfo.endDate}</Text>
+                    {/* <Text style={styles.challengeDetailInformation}>Start Date: {challengeInfo.startDate}</Text>
+                    <Text style={styles.challengeDetailInformation}>End Date: {challengeInfo.endDate}</Text> */}
                     <Text style={styles.challengeDetailInformation}>People Joined: {challengeInfo.participantList.length} </Text>
                 </Layout>
             </ScrollView>
