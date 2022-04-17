@@ -1,5 +1,8 @@
 #import "AppDelegate.h"
 
+#import <Firebase.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -12,8 +15,7 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
-#import <Firebase.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
