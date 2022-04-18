@@ -81,7 +81,8 @@ const HomeScreenHeader = () => {
     )
 };
 
-const MyChallengesSection = () => {
+const MyChallengesSection = (data) => {
+    // console.log(data)
     return (
         <ApplicationProvider
             mapping={mapping}
@@ -100,7 +101,7 @@ const MyChallengesSection = () => {
     );
 }
 
-const ExploreChallengesSection = () => {
+const ExploreChallengesSection = (data) => {
     return (
         <ApplicationProvider
             mapping={mapping}
@@ -118,29 +119,38 @@ const ExploreChallengesSection = () => {
     );
 }
 
-function onResult(QuerySnapshot) {
-    console.log('Got Users collection result.');
-}
-
-function onError(error) {
-    console.error(error);
-}
-
 const HomeScreen = ({ navigation }) => {
-    const [data, setData] = useState();
+    const [challengeData, setChallengeData] = useState([]);
+    const [newChallengeData, setNewChallengeData] = useState([]);
+    const [joinedChallengeData, setJoinedChallengeData] = useState([]);
+    const [userData, setUserData] = useState();
+
     const { user, setUser } = useContext(AuthContext);
 
-    // setUser(null);
-    // console.log(user.uid);
-    // console.log(firebase.apps.length);
-    // const a = firebase.firestore().collection('users').doc(user.uid).get()
+    // fetch public challenge data
+    firestore().collection('newChallenges').get()
+        .then(documentSnapshot => {
+            data = [];
+            documentSnapshot.docs.map(doc => data.push(doc.data()))
+            setChallengeData(data)
+        });
+    
+    // filter public challenge data
+    challengeData.forEach(data => {
+        participantList = data.participantList;
+        if(participantList.includes(user.uid)) {
+            joinedChallengeData.push(data)
+        }else {
+            newChallengeData.push(data)
+        }
+    })
 
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
                 <HomeScreenHeader />
-                <MyChallengesSection />
-                <ExploreChallengesSection />
+                <MyChallengesSection data={joinedChallengeData} />
+                <ExploreChallengesSection data={newChallengeData} />
             </ScrollView>
         </SafeAreaView>
 
