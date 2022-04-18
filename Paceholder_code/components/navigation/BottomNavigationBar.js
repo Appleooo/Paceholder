@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -8,6 +8,7 @@ import CommunityScreen from '../../screens/CommunityScreen';
 import CreationScreen from '../../screens/CreationScreen';
 import ProgressScreen from '../../screens/ProgressScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
+import ChallengeCreationScreen from '../../screens/ChallengeCreationScreen';
 import HomeChallengeDetailScreenNavigation from './HomeChallengeDetailScreenNavigation';
 
 import {
@@ -45,7 +46,19 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
     },
-    
+    creationPanel: {
+        flex: 1,
+        // flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFBF69',
+        width: 160,
+        height: 55,
+        position: 'absolute',
+        bottom: 0,
+        borderRadius: 25,
+    },
 });
 
 const Tab = createBottomTabNavigator();
@@ -70,8 +83,34 @@ const CustomCreationTabBarButton = ({ children, onPress }) => {
     </TouchableOpacity>
 }
 
+const CreationPanel = (showCreationPanel, setShowCreationPanel) => {
+    return (
+        <View style={styles.creationPanel}>
+            <View >
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate("ChallengeCreationScreen")
+                    }}>
+                    <Icon name="award" size={22} color={"#242424"} />
+                    <Text>Challenge</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        setShowCreationPanel(false);
+                    }}>
+                    <Icon name="x" size={22} color={"#242424"} />
+                    <Text>Cancel</Text>
+                </TouchableOpacity>
+            </View>
+
+        </View>
+    );
+}
+
 
 const NavigationTabs = () => {
+    const [showCreationPanel, setShowCreationPanel] = useState(false);
+
     return (
         <>
             <Tab.Navigator
@@ -104,9 +143,9 @@ const NavigationTabs = () => {
                         ),
                     }} /> */}
 
-                {/* <Tab.Screen
+                <Tab.Screen
                     name="New"
-                    component={CreationScreen}
+                    component={CreationPanel}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="plus-circle" size={size} color={color} />
@@ -116,7 +155,7 @@ const NavigationTabs = () => {
                         // )
                     }} />
 
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Progress"
                     component={ProgressScreen}
                     options={{
