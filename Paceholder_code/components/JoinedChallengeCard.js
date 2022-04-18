@@ -53,7 +53,7 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
-const JoinedChallengeCard = () => {
+const JoinedChallengeCard = (props) => {
     var checkedInStatus = true;
     const navigation = useNavigation();
 

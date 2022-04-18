@@ -9,6 +9,21 @@ import { AuthContext } from './AuthProvider';
 import { Provider as PaperProvider } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 
+const styles = StyleSheet.create({
+    creationPanel: {
+        flex: 1,
+        // flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        // justifyContent: 'space-between',
+        backgroundColor: '#FFBF69',
+        width: 240,
+        height: 55,
+        position: 'absolute',
+    },
+
+});
+
 const Route = () => {
     const { user, setUser } = useContext(AuthContext);
     const [initializing, setInitializing] = useState(true);
@@ -27,7 +42,10 @@ const Route = () => {
 
     return (
         <PaperProvider>
-            {user ? <BottomNavigationBar /> : <AuthNavigation />}
+            {user ?
+                <BottomNavigationBar />
+                :
+                <AuthNavigation />}
         </PaperProvider>
 
     );

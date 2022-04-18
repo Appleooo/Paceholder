@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
 
 const LoginScreen = () => {
     const navigation = useNavigation();
-    const { login, facebookLogin } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
