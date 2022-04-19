@@ -145,7 +145,7 @@ const NavigationTabs = () => {
 
                 <Tab.Screen
                     name="New"
-                    component={CreationPanel}
+                    component={CreationScreen}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="plus-circle" size={size} color={color} />
