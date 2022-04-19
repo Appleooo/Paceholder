@@ -31,6 +31,7 @@ const Route = () => {
     const onAuthStateChanged = (user) => {
         setUser(user);
         if (initializing) setInitializing(false);
+        console.log('---------------- onAuthStateChanged')
     }
 
     useEffect(() => {

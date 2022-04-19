@@ -87,7 +87,6 @@ const MyChallengesSection = (data) => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-
             <Layout style={styles.myChallengesContainer}>
                 <Text style={styles.sectionTitle}>My Challenges</Text>
                 <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
@@ -101,7 +100,15 @@ const MyChallengesSection = (data) => {
     );
 }
 
-const ExploreChallengesSection = (data) => {
+const ExploreChallengesSection = (newChallengeData) => {
+    console.log('--------  explore section');
+    let newChallengeComponents = [];
+    if (newChallengeData.newChallengeData.length > 0) {
+        newChallengeComponents = newChallengeData.newChallengeData.map(data =>
+            <NewChallengeCard challengeInfo={data} />
+        )
+    }
+
     return (
         <ApplicationProvider
             mapping={mapping}
@@ -111,9 +118,7 @@ const ExploreChallengesSection = (data) => {
             </Layout>
             <CategoryBar />
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
-                <NewChallengeCard />
-                <NewChallengeCard />
-                <NewChallengeCard />
+                {newChallengeComponents}
             </ScrollView>
         </ApplicationProvider>
     );
@@ -123,34 +128,45 @@ const HomeScreen = ({ navigation }) => {
     const [challengeData, setChallengeData] = useState([]);
     const [newChallengeData, setNewChallengeData] = useState([]);
     const [joinedChallengeData, setJoinedChallengeData] = useState([]);
-    const [userData, setUserData] = useState();
-
     const { user, setUser } = useContext(AuthContext);
 
     // fetch public challenge data
-    firestore().collection('newChallenges').get()
-        .then(documentSnapshot => {
-            data = [];
-            documentSnapshot.docs.map(doc => data.push(doc.data()))
-            setChallengeData(data)
-        });
-    
-    // filter public challenge data
-    challengeData.forEach(data => {
-        participantList = data.participantList;
-        if(participantList.includes(user.uid)) {
-            joinedChallengeData.push(data)
-        }else {
-            newChallengeData.push(data)
-        }
-    })
+    useEffect(() => {
+        const subscriber = firestore()
+            .collection('newChallenges')
+            .onSnapshot(documentSnapshot => {
+                data = [];
+                documentSnapshot.docs.map(doc => data.push(doc.data()))
+                setChallengeData(data)
+
+                // filter public challenge data
+                a = []
+                b = []
+                data.forEach(data => {
+                    participantList = data.participantList;
+                    if (participantList.includes(user.uid)) {
+                        a.push(data)
+                    } else {
+                        // console.log('--------not in list')
+                        b.push(data)
+                    }
+                })
+                setJoinedChallengeData(a)
+                setNewChallengeData(b)
+            });
+
+        // Stop listening for updates when no longer required
+        return () => subscriber();
+    }, []);
+
+    console.log(newChallengeData)
 
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
                 <HomeScreenHeader />
                 <MyChallengesSection data={joinedChallengeData} />
-                <ExploreChallengesSection data={newChallengeData} />
+                <ExploreChallengesSection newChallengeData={newChallengeData} />
             </ScrollView>
         </SafeAreaView>
 

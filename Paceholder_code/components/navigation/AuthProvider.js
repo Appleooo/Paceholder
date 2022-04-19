@@ -53,6 +53,7 @@ export const AuthProvider = (props) => {
                                     email,
                                     lastName,
                                     firstName,
+                                    joinedPrivateChallengeList: [],
                                 };
                                 const usersRef = firestore().collection('users')
                                 usersRef
