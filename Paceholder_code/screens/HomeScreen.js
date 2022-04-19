@@ -82,7 +82,15 @@ const HomeScreenHeader = () => {
 };
 
 const MyChallengesSection = (data) => {
-    // console.log(data)
+    console.log('--------  my section');
+    console.log(data.data);
+    let joinedChallengeComponents = [];
+    if (data.data.length > 0) {
+        joinedChallengeComponents = data.data.map(data =>
+            <JoinedChallengeCard challengeInfo={data} />
+        )
+    }
+
     return (
         <ApplicationProvider
             mapping={mapping}
@@ -137,29 +145,45 @@ const HomeScreen = ({ navigation }) => {
             .onSnapshot(documentSnapshot => {
                 data = [];
                 documentSnapshot.docs.map(doc => data.push(doc.data()))
-                setChallengeData(data)
+                // setChallengeData(data)
 
                 // filter public challenge data
                 a = []
-                b = []
                 data.forEach(data => {
                     participantList = data.participantList;
-                    if (participantList.includes(user.uid)) {
+                    if (!participantList.includes(user.uid)) {
                         a.push(data)
-                    } else {
-                        // console.log('--------not in list')
-                        b.push(data)
                     }
                 })
-                setJoinedChallengeData(a)
-                setNewChallengeData(b)
+                setNewChallengeData(a)
             });
 
         // Stop listening for updates when no longer required
         return () => subscriber();
     }, []);
 
-    console.log(newChallengeData)
+    // fetch joined challenge list and data
+    useEffect(() => {
+        const subscriber = firestore()
+            .collection('users')
+            .doc(user.uid)
+            .onSnapshot(documentSnapshot => {
+                // console.log(documentSnapshot.data().joinedChallengeList)
+                setJoinedChallengeData(documentSnapshot.data().joinedChallengeList);
+            });
+        const challengeRef = firestore().collection('joinedChallenges');
+        joinedChallengeData.forEach(id => {
+            challengeRef
+                .doc(id)
+                .onSnapshot(documentSnapshot => {
+                    // console.log(documentSnapshot.data().joinedChallengeList)
+                    setJoinedChallengeData(joinedChallengeData.concat([documentSnapshot.data()]));
+                });
+        })
+        // Stop listening for updates when no longer required
+        return () => subscriber();
+    }, []);
+
 
     return (
         <SafeAreaView style={styles.body}>

@@ -144,11 +144,9 @@ const handleOnPress = (challengeList, setChallengeList, name, description, start
             unit,
             userProgress: 0,
             checkinList: [],
-            participantList: [],
+            participantList: [userID],
         })
         .then((docRef) => {
-            console.log('User added!');
-            console.log("Document written with ID: ", docRef.id);
             updateUserChallengeList(docRef.id, userID, challengeList, setChallengeList);
         })
         .catch(function (error) {
@@ -167,7 +165,6 @@ const updateUserChallengeList = (challengeID, userID, challengeList, setChalleng
         .get()
         .then(documentSnapshot => {
             if (documentSnapshot.exists) {
-                // console.log(documentSnapshot.data());
                 setChallengeList(documentSnapshot.data().joinedChallengeList)
             }
             else {
