@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, TextInput } from "react-native";
+import React, { useState, useContext } from "react";
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, TextInput, Alert } from "react-native";
+import { Picker } from '@react-native-picker/picker';
 
 import Icon from 'react-native-vector-icons/Feather';
+import { AuthContext } from "../components/navigation/AuthProvider";
+import firestore from '@react-native-firebase/firestore';
 
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; //full height
+
 
 const styles = StyleSheet.create({
     body: {
@@ -87,6 +91,100 @@ const styles = StyleSheet.create({
     }
 
 });
+const showEmptyAlert = () => {
+    Alert.alert(
+        "Empty Fields",
+        "At least one field is empty",
+        [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+    );
+}
+
+const showDateAlert = (dateType) => {
+    Alert.alert(
+        "Invalid " + dateType,
+        "Format YYYY-MM-DD",
+        [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+    );
+}
+
+const handleOnPress = (challengeList, setChallengeList, name, description, startDate, endDate, goal, unit, type, userID) => {
+
+
+    // check empty
+    if (name == "" || description == "" || startDate == "" || endDate == "" || goal == "" || unit == "" || type == "") {
+        showEmptyAlert();
+        return;
+    }
+    startDateSplit = startDate.split('-');
+    endDateSplit = endDate.split('-');
+    // check date
+    if (startDateSplit.length < 3 || startDateSplit[0].length != 4) {
+        showDateAlert('startDate');
+        return;
+    }
+    if (endDateSplit.length < 3 || endDateSplit[0].length != 4) {
+        showDateAlert('endDate');
+        return;
+    }
+
+    // write joined private challenge to firestore
+    const joinedChallengeRef = firestore().collection('joinedChallenges')
+    joinedChallengeRef
+        .add({
+            challengeName: name,
+            challengeDescription: description,
+            startDate,
+            endDate,
+            goal,
+            type,
+            unit,
+            userProgress: 0,
+            checkinList: [],
+            participantList: [],
+        })
+        .then((docRef) => {
+            console.log('User added!');
+            console.log("Document written with ID: ", docRef.id);
+            updateUserChallengeList(docRef.id, userID, challengeList, setChallengeList);
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
+
+    // console.log(name, description, startDate, endDate, goal, unit, type, userID)
+}
+
+// add challenge uniqe id to joinedChallengeList
+const updateUserChallengeList = (challengeID, userID, challengeList, setChallengeList) => {
+    const usereRef = firestore().collection('users')
+
+    usereRef
+        .doc(userID)
+        .get()
+        .then(documentSnapshot => {
+            if (documentSnapshot.exists) {
+                // console.log(documentSnapshot.data());
+                setChallengeList(documentSnapshot.data().joinedChallengeList)
+            }
+            else {
+                console.log('Error: Data does not exist');
+            }
+        });
+    setChallengeList(challengeList.push(challengeID))
+    // console.log('list: ', challengeList)
+    usereRef
+        .doc(userID)
+        .update({
+            joinedChallengeList: challengeList,
+        })
+        .then(() => {
+            console.log('User updated!');
+        });
+}
 
 const CreationScreen = ({ navigation }) => {
     const [name, setName] = useState("");
@@ -96,6 +194,12 @@ const CreationScreen = ({ navigation }) => {
     const [goal, setGoal] = useState("");
     const [unit, setUnit] = useState("");
     const [type, setType] = useState("");
+    const [challengeList, setChallengeList] = useState("");
+
+
+
+    const { user, setUser } = useContext(AuthContext);
+    // console.log('user id: ',  user.uid)
 
 
     return (
@@ -121,7 +225,7 @@ const CreationScreen = ({ navigation }) => {
                         <Text style={styles.creationTitle}>Start Date</Text>
                         <TextInput
                             style={styles.fieldText}
-                            placeholder={"MM/DD/YYYY"}
+                            placeholder={"YYYY-MM-DD"}
                             placeholderTextColor='#4B4B4B'
                             onChangeText={text => setStartDate(text)} />
                     </View>
@@ -130,7 +234,7 @@ const CreationScreen = ({ navigation }) => {
                         <Text style={styles.creationTitle}>End Date</Text>
                         <TextInput
                             style={styles.fieldText}
-                            placeholder={"MM/DD/YYYY"}
+                            placeholder={"YYYY-MM-DD"}
                             placeholderTextColor='#4B4B4B'
                             onChangeText={text => setEndDate(text)} />
                     </View>
@@ -149,7 +253,7 @@ const CreationScreen = ({ navigation }) => {
                         <Text style={styles.creationTitle}>Unit</Text>
                         <TextInput
                             style={styles.fieldText}
-                            placeholder={"Frequency"}
+                            placeholder={"e.g. times/kg/miles"}
                             placeholderTextColor='#4B4B4B'
                             onChangeText={text => setUnit(text)} />
                     </View>
@@ -168,7 +272,7 @@ const CreationScreen = ({ navigation }) => {
                 </View>
                 <TouchableOpacity
                     style={styles.createButton}
-                    onPress={() => { }}>
+                    onPress={() => handleOnPress(challengeList, setChallengeList, name, description, startDate, endDate, goal, unit, type, user.uid)}>
                     <Text style={styles.createButtonTitle}>Create Challenge</Text>
                 </TouchableOpacity>
 
