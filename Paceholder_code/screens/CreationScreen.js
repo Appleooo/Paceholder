@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, ScrollView, TextInput } from "react-native";
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -10,10 +10,9 @@ var height = Dimensions.get('window').height; //full height
 const styles = StyleSheet.create({
     body: {
         flex: 1,
-        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#ffffff',
-        flexWrap: 'wrap',
+        display: 'flex',
     },
     creationImage: {
         width: width,
@@ -32,6 +31,11 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         textAlign: 'left',
         marginBottom: 10,
+        zIndex: 1000,
+        top: 220,
+        left: 20,
+        position: 'absolute',
+        color: 'white',
     },
     container: {
         width: width,
@@ -67,12 +71,13 @@ const styles = StyleSheet.create({
         width: (width - 80) / 2,
     },
     createButton: {
-        width: 230,
+        width: width - 50,
         height: 47,
         backgroundColor: '#FFBF69',
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 10,
         marginBottom: 50,
     },
     createButtonTitle: {
@@ -84,26 +89,33 @@ const styles = StyleSheet.create({
 });
 
 const CreationScreen = ({ navigation }) => {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [goal, setGoal] = useState("");
+    const [unit, setUnit] = useState("");
+    const [type, setType] = useState("");
+
+
     return (
         <View style={styles.body}>
             <Image style={styles.creationImage} source={require('../Assets/Images/running.jpeg')} />
-
+            <Text style={styles.creationText}>Create New Challenges</Text>
             <ScrollView style={styles.container} persistentScrollbar={true}>
-                <Text style={styles.creationText}>Create New Challenges</Text>
                 <Text style={styles.creationTitle}>Challenge Name</Text>
                 <TextInput
                     style={styles.fieldText}
                     placeholder={"Enter Your Challenge Name Here"}
                     placeholderTextColor='#4B4B4B'
-                    onChangeText={text => handleChange(text)} />
+                    onChangeText={text => setName(text)} />
                 <Text style={styles.creationTitle}>Description</Text>
                 <TextInput
                     style={{ height: 80, ...styles.fieldText }}
                     placeholder={"Enter Your Challenge Name Here"}
                     placeholderTextColor='#4B4B4B'
                     multiline={true}
-                    onChangeText={text => handleChange(text)} />
-
+                    onChangeText={text => setDescription(text)} />
                 <View style={styles.subsectionContainer}>
                     <View style={styles.subsection}>
                         <Text style={styles.creationTitle}>Start Date</Text>
@@ -111,7 +123,7 @@ const CreationScreen = ({ navigation }) => {
                             style={styles.fieldText}
                             placeholder={"MM/DD/YYYY"}
                             placeholderTextColor='#4B4B4B'
-                            onChangeText={text => handleChange(text)} />
+                            onChangeText={text => setStartDate(text)} />
                     </View>
 
                     <View style={styles.subsection}>
@@ -120,7 +132,7 @@ const CreationScreen = ({ navigation }) => {
                             style={styles.fieldText}
                             placeholder={"MM/DD/YYYY"}
                             placeholderTextColor='#4B4B4B'
-                            onChangeText={text => handleChange(text)} />
+                            onChangeText={text => setEndDate(text)} />
                     </View>
 
                 </View>
@@ -131,7 +143,7 @@ const CreationScreen = ({ navigation }) => {
                             style={styles.fieldText}
                             placeholder={"e.g. 5"}
                             placeholderTextColor='#4B4B4B'
-                            onChangeText={text => handleChange(text)} />
+                            onChangeText={text => setGoal(text)} />
                     </View>
                     <View style={styles.subsection}>
                         <Text style={styles.creationTitle}>Unit</Text>
@@ -139,7 +151,7 @@ const CreationScreen = ({ navigation }) => {
                             style={styles.fieldText}
                             placeholder={"Frequency"}
                             placeholderTextColor='#4B4B4B'
-                            onChangeText={text => handleChange(text)} />
+                            onChangeText={text => setUnit(text)} />
                     </View>
                 </View>
 
@@ -151,10 +163,9 @@ const CreationScreen = ({ navigation }) => {
                             style={styles.fieldText}
                             placeholder={"e.g. Running"}
                             placeholderTextColor='#4B4B4B'
-                            onChangeText={text => handleChange(text)} />
+                            onChangeText={text => setType(text)} />
                     </View>
                 </View>
-
                 <TouchableOpacity
                     style={styles.createButton}
                     onPress={() => { }}>
