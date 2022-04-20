@@ -4,7 +4,7 @@ import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-
+import Route from '../components/navigation/Route';
 
 const styles = StyleSheet.create({
     navigationContainer: {
@@ -112,9 +112,10 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
-const pressedCheckIn = () => {
-
-}
+// const pressedCheckIn = () => {
+//     const navigation = useNavigation();
+//     navigation.navigate("JoinedChallengeScreen")
+// }
 
 const NewChallengeDetailScreen = () => {
     var checkedInStatus = true;
@@ -139,7 +140,10 @@ const NewChallengeDetailScreen = () => {
                 <Layout style={styles.checkInContainer}>
                     <TouchableOpacity
                         style={styles.checkInButton}
-                        onPress={pressedCheckIn}
+                        onPress={() => {
+                            navigation.navigate("JoinedChallengeScreen")
+                        }
+                        }
                     >
                         <Text style={styles.checkInText}>Join Challenge</Text>
                     </TouchableOpacity>

@@ -158,8 +158,15 @@ const handleOnPress = (challengeList, setChallengeList, name, description, start
 
 // add challenge uniqe id to joinedChallengeList
 const updateUserChallengeList = (challengeID, userID, challengeList, setChallengeList) => {
+    firestore().collection('joinedChallenges')
+        .doc(challengeID)
+        .update({
+            id: challengeID,
+        })
+        .then(() => {
+            console.log('challenge id updated!');
+        });
     const usereRef = firestore().collection('users')
-
     usereRef
         .doc(userID)
         .get()

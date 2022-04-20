@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -81,15 +81,27 @@ const HomeScreenHeader = () => {
     )
 };
 
-const MyChallengesSection = (data) => {
+const MyChallengesSection = (joinedChallengeData, joinedChallengeIDList) => {
     console.log('--------  my section');
-    console.log(data.data);
+    console.log(joinedChallengeIDList);
+    // let userJoinedChallengeData = [];
+    // if (joinedChallengeIDList != {}) {
+    //     joinedChallengeIDList.forEach(id => {
+    //         joinedChallengeData.joinedChallengeData.forEach(challengeInfo => {
+    //             if (challengeInfo.id == id) {
+    //                 userJoinedChallengeData.push(challengeInfo);
+    //             }
+    //         })
+    //     })
+    // }
+    // let userJoinedChallengeData = 
     let joinedChallengeComponents = [];
-    if (data.data.length > 0) {
-        joinedChallengeComponents = data.data.map(data =>
-            <JoinedChallengeCard challengeInfo={data} />
-        )
-    }
+    // if (data.data.length > 0) {
+    //     joinedChallengeComponents = data.data.map(data =>
+    //         <JoinedChallengeCard challengeInfo={data} />
+    //     )
+    // }
+    console.log(joinedChallengeComponents)
 
     return (
         <ApplicationProvider
@@ -100,9 +112,7 @@ const MyChallengesSection = (data) => {
                 <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
             </Layout>
             <ScrollView style={styles.myChallengesCardSection} horizontal={true} showsHorizontalScrollIndicator={false}>
-                <JoinedChallengeCard />
-                <JoinedChallengeCard />
-                <JoinedChallengeCard />
+                {joinedChallengeComponents}
             </ScrollView>
         </ApplicationProvider>
     );
@@ -136,20 +146,21 @@ const HomeScreen = ({ navigation }) => {
     const [challengeData, setChallengeData] = useState([]);
     const [newChallengeData, setNewChallengeData] = useState([]);
     const [joinedChallengeData, setJoinedChallengeData] = useState([]);
+    const [joinedChallengeIDList, setJoinedChallengeIDList] = useState([]);
     const { user, setUser } = useContext(AuthContext);
 
-    // fetch public challenge data
+
+    // fetch all public challenge data
     useEffect(() => {
         const subscriber = firestore()
             .collection('newChallenges')
             .onSnapshot(documentSnapshot => {
                 data = [];
                 documentSnapshot.docs.map(doc => data.push(doc.data()))
-                // setChallengeData(data)
-
+                setChallengeData(data)
                 // filter public challenge data
                 a = []
-                data.forEach(data => {
+                challengeData.forEach(data => {
                     participantList = data.participantList;
                     if (!participantList.includes(user.uid)) {
                         a.push(data)
@@ -157,39 +168,48 @@ const HomeScreen = ({ navigation }) => {
                 })
                 setNewChallengeData(a)
             });
-
         // Stop listening for updates when no longer required
         return () => subscriber();
     }, []);
 
-    // fetch joined challenge list and data
+    // fetch joined challenge list
     useEffect(() => {
+
         const subscriber = firestore()
             .collection('users')
             .doc(user.uid)
             .onSnapshot(documentSnapshot => {
                 // console.log(documentSnapshot.data().joinedChallengeList)
-                setJoinedChallengeData(documentSnapshot.data().joinedChallengeList);
+                setJoinedChallengeIDList(documentSnapshot.data().joinedChallengeList);
             });
-        const challengeRef = firestore().collection('joinedChallenges');
-        joinedChallengeData.forEach(id => {
-            challengeRef
-                .doc(id)
-                .onSnapshot(documentSnapshot => {
-                    // console.log(documentSnapshot.data().joinedChallengeList)
-                    setJoinedChallengeData(joinedChallengeData.concat([documentSnapshot.data()]));
-                });
-        })
+        // console.log('------ joinedChallengeIDList', joinedChallengeIDList)
+
         // Stop listening for updates when no longer required
         return () => subscriber();
     }, []);
+
+    // fetch all joined challenge data
+    useEffect(() => {
+        const subscriber = firestore()
+            .collection('joinedChallenges')
+            .onSnapshot(documentSnapshot => {
+                data = [];
+                documentSnapshot.docs.map(doc => data.push(doc.data()))
+                setJoinedChallengeData(data)
+            });
+        // console.log('------ joinedChallengeData', joinedChallengeData)
+        // Stop listening for updates when no longer required
+        return () => subscriber();
+    }, []);
+
+
 
 
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
                 <HomeScreenHeader />
-                <MyChallengesSection data={joinedChallengeData} />
+                <MyChallengesSection joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
                 <ExploreChallengesSection newChallengeData={newChallengeData} />
             </ScrollView>
         </SafeAreaView>
