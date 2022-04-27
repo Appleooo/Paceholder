@@ -4,6 +4,7 @@ import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+import Route from '../components/navigation/Route';
 
 const styles = StyleSheet.create({
     navigationContainer: {

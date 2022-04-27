@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
 
 
 });
+
+type Props = Readonly<{
+    challengeInfo: Array,
+}>;
+
 function showCheckInStatus(checkedInStatus) {
     if (checkedInStatus) {
         return (
@@ -53,9 +58,12 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
-const JoinedChallengeCard = (props) => {
+const JoinedChallengeCard = (props: Props) => {
     var checkedInStatus = true;
     const navigation = useNavigation();
+    const { challengeInfo } = props;
+
+    console.log('----------- JoinedChallengeCard: ', challengeInfo);
 
     return (
         <ApplicationProvider
@@ -67,8 +75,8 @@ const JoinedChallengeCard = (props) => {
                 }}>
                 <Layout style={styles.joinedChallengesContainer}>
                     <Image style={styles.joinedChallengesImage} source={require('../Assets/Images/running.jpeg')} />
-                    <Text style={styles.joinedChallengesTitle}>Running 5km in two weeks rrrr</Text>
-                    {showCheckInStatus(checkedInStatus)}
+                    <Text style={styles.joinedChallengesTitle}>{challengeInfo.challengeName}</Text>
+                    {/* {showCheckInStatus(checkedInStatus)} */}
                 </Layout>
             </TouchableOpacity>
 

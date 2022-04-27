@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import { Calendar } from 'react-native-calendars';
 import firestore from '@react-native-firebase/firestore';
+
+var width = Dimensions.get('window').width; //full width
+var height = Dimensions.get('window').height; //full height
 
 const styles = StyleSheet.create({
     navigationContainer: {
@@ -52,8 +55,8 @@ const styles = StyleSheet.create({
     },
     challengeDetailImage: {
         alignContent: 'stretch',
-        width: 390,
-        height: 232,
+        width: width,
+        height: 230,
         borderRadius: 6,
     },
     checkInText: {

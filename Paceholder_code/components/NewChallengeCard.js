@@ -54,9 +54,14 @@ const styles = StyleSheet.create({
 
 });
 
-const NewChallengeCard = () => {
-    var checkedInStatus = true;
+// @flow
+type Props = Readonly<{
+    challengeInfo: Array,
+}>;
+
+const NewChallengeCard = (props: Props) => {
     const navigation = useNavigation();
+    const { challengeInfo } = props;
 
     return (
         <ApplicationProvider
@@ -64,15 +69,20 @@ const NewChallengeCard = () => {
             theme={lightTheme}>
             <TouchableOpacity
                 onPress={() => {
-                    navigation.navigate("NewChallengeScreen")
+                    navigation.navigate("NewChallengeScreen", {
+                        screen: 'NewChallengeScreen',
+                        params: { challengeInfo: challengeInfo }
+                        
+                    })
+                    console.log('------------------ on press',challengeInfo)
                 }
                 }>
                 <Layout style={styles.newChallengesContainer}>
                     <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
                     <Layout style={styles.newChallengesInfoSection}>
-                        <Text style={styles.newChallengesTitle}>Push/ pull/ legs 3 days a week</Text>
-                        <Text style={styles.newChallengesAudienceTitle}>Joined: 100+</Text>
-                        <Text style={styles.newChallengestagTitle}>“Great beginner workout!”</Text>
+                        <Text style={styles.newChallengesTitle}>{challengeInfo.challengeName}</Text>
+                        <Text style={styles.newChallengesAudienceTitle}>{challengeInfo.participantList}</Text>
+                        <Text style={styles.newChallengestagTitle}>{challengeInfo.challengeDescription}</Text>
                     </Layout>
                 </Layout>
             </TouchableOpacity>
