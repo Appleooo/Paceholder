@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
 
 });
 
+type Props = Readonly<{
+    newChallengeData: Array,
+    joinedChallengeData: Array,
+    joinedChallengeIDList: Array,
+
+}>;
+
 const HomeScreenHeader = () => {
     return (
         <ApplicationProvider
@@ -81,27 +88,27 @@ const HomeScreenHeader = () => {
     )
 };
 
-const MyChallengesSection = (joinedChallengeData, joinedChallengeIDList) => {
-    console.log('--------  my section');
-    console.log(joinedChallengeIDList);
-    // let userJoinedChallengeData = [];
-    // if (joinedChallengeIDList != {}) {
-    //     joinedChallengeIDList.forEach(id => {
-    //         joinedChallengeData.joinedChallengeData.forEach(challengeInfo => {
-    //             if (challengeInfo.id == id) {
-    //                 userJoinedChallengeData.push(challengeInfo);
-    //             }
-    //         })
-    //     })
-    // }
-    // let userJoinedChallengeData = 
+const MyChallengesSection = (props) => {
+    // console.log('--------  my section', joinedChallengeIDList);
+    const { joinedChallengeData, joinedChallengeIDList } = props;
+
+    let userJoinedChallengeData = [];
+
+    if (typeof joinedChallengeData !== 'undefined' && joinedChallengeData.length > 0
+        && typeof joinedChallengeIDList !== 'undefined' && joinedChallengeIDList.length > 0) {
+        joinedChallengeData.forEach(data => {
+            if (joinedChallengeIDList.includes(data.id)) {
+                userJoinedChallengeData.push(data)
+            }
+        })
+    }
+
     let joinedChallengeComponents = [];
-    // if (data.data.length > 0) {
-    //     joinedChallengeComponents = data.data.map(data =>
-    //         <JoinedChallengeCard challengeInfo={data} />
-    //     )
-    // }
-    console.log(joinedChallengeComponents)
+    if (userJoinedChallengeData.length > 0) {
+        joinedChallengeComponents = userJoinedChallengeData.map(data =>
+            <JoinedChallengeCard challengeInfo={data} />
+        )
+    }
 
     return (
         <ApplicationProvider
@@ -118,11 +125,20 @@ const MyChallengesSection = (joinedChallengeData, joinedChallengeIDList) => {
     );
 }
 
-const ExploreChallengesSection = (newChallengeData) => {
-    console.log('--------  explore section');
+const ExploreChallengesSection = (props) => {
+    const { newChallengeData, userID } = props;
+
+    console.log('--------  explore section', typeof newChallengeData, newChallengeData.length > 0);
     let newChallengeComponents = [];
-    if (newChallengeData.newChallengeData.length > 0) {
-        newChallengeComponents = newChallengeData.newChallengeData.map(data =>
+    if (typeof newChallengeData !== 'undefined' && newChallengeData.length > 0) {
+        filtered_data = []
+        newChallengeData.forEach(data => {
+            participantList = data.participantList;
+            if (!participantList.includes(userID)) {
+                filtered_data.push(data)
+            }
+        })
+        newChallengeComponents = filtered_data.map(data =>
             <NewChallengeCard challengeInfo={data} />
         )
     }
@@ -142,75 +158,25 @@ const ExploreChallengesSection = (newChallengeData) => {
     );
 }
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = (props: Props) => {
     const [challengeData, setChallengeData] = useState([]);
-    const [newChallengeData, setNewChallengeData] = useState([]);
-    const [joinedChallengeData, setJoinedChallengeData] = useState([]);
-    const [joinedChallengeIDList, setJoinedChallengeIDList] = useState([]);
+    // const [newChallengeData, setNewChallengeData] = useState([]);
+    // const [joinedChallengeData, setJoinedChallengeData] = useState([]);
+    // const [joinedChallengeIDList, setJoinedChallengeIDList] = useState([]);
     const { user, setUser } = useContext(AuthContext);
+    const { newChallengeData, joinedChallengeData, joinedChallengeIDList } = props;
 
-
-    // fetch all public challenge data
-    useEffect(() => {
-        const subscriber = firestore()
-            .collection('newChallenges')
-            .onSnapshot(documentSnapshot => {
-                data = [];
-                documentSnapshot.docs.map(doc => data.push(doc.data()))
-                setChallengeData(data)
-                // filter public challenge data
-                a = []
-                challengeData.forEach(data => {
-                    participantList = data.participantList;
-                    if (!participantList.includes(user.uid)) {
-                        a.push(data)
-                    }
-                })
-                setNewChallengeData(a)
-            });
-        // Stop listening for updates when no longer required
-        return () => subscriber();
-    }, []);
-
-    // fetch joined challenge list
-    useEffect(() => {
-
-        const subscriber = firestore()
-            .collection('users')
-            .doc(user.uid)
-            .onSnapshot(documentSnapshot => {
-                // console.log(documentSnapshot.data().joinedChallengeList)
-                setJoinedChallengeIDList(documentSnapshot.data().joinedChallengeList);
-            });
-        // console.log('------ joinedChallengeIDList', joinedChallengeIDList)
-
-        // Stop listening for updates when no longer required
-        return () => subscriber();
-    }, []);
-
-    // fetch all joined challenge data
-    useEffect(() => {
-        const subscriber = firestore()
-            .collection('joinedChallenges')
-            .onSnapshot(documentSnapshot => {
-                data = [];
-                documentSnapshot.docs.map(doc => data.push(doc.data()))
-                setJoinedChallengeData(data)
-            });
-        // console.log('------ joinedChallengeData', joinedChallengeData)
-        // Stop listening for updates when no longer required
-        return () => subscriber();
-    }, []);
-
-
-
+    console.log('------ newChallengeData in home screen', newChallengeData)
+    // console.log('------ joinedChallengeData in home screen', joinedChallengeData)
+    console.log('------ joinedChallengeIDList in home screen', joinedChallengeIDList)
+    
 
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
                 <HomeScreenHeader />
                 <MyChallengesSection joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
-                <ExploreChallengesSection newChallengeData={newChallengeData} />
+                <ExploreChallengesSection newChallengeData={newChallengeData} userID={user.uid}/>
             </ScrollView>
         </SafeAreaView>
 
