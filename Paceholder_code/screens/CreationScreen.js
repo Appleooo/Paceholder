@@ -148,12 +148,25 @@ const handleOnPress = (challengeList, setChallengeList, name, description, start
         })
         .then((docRef) => {
             updateUserChallengeList(docRef.id, userID, challengeList, setChallengeList);
+            updateID(docRef.id);
         })
         .catch(function (error) {
             console.error("Error adding document: ", error);
         });
 
     // console.log(name, description, startDate, endDate, goal, unit, type, userID)
+}
+
+const updateID = (challengeID) => {
+    const joinedChallengeRef = firestore().collection('joinedChallenges')
+    joinedChallengeRef
+        .doc(challengeID)
+        .update({
+            id: challengeID
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
 }
 
 // add challenge uniqe id to joinedChallengeList

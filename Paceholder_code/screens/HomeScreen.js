@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
 import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
         width: width,
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         marginTop: 20,
     },
     headerTitle: {
@@ -59,10 +58,13 @@ const styles = StyleSheet.create({
         fontFamily: 'RobotoCondensed-Bold',
     },
     headerAvatar: {
-        marginLeft: 18,
+        // marginLeft: 18,
     },
     headerSearchButton: {
-        marginRight: 18,
+        // marginRight: 18,
+        position: 'absolute',
+        marginTop: -12,
+        marginLeft: width / 4,
     }
 
 });
@@ -76,15 +78,14 @@ type Props = Readonly<{
 
 const HomeScreenHeader = () => {
     return (
-        <ApplicationProvider
-            mapping={mapping}
-            theme={lightTheme}>
-            <Layout style={styles.headerContainer}>
-                <Avatar style={styles.headerAvatar} source={require('..//Assets/Images/Yijing.jpg')} />
-                <Text style={styles.headerTitle}>Challenges</Text>
-                <Icon style={styles.headerSearchButton} name="search" size={24} />
-            </Layout>
-        </ApplicationProvider>
+
+        <View style={styles.headerContainer}>
+            {/* <Avatar style={styles.headerAvatar} source={require('..//Assets/Images/Yijing.jpg')} /> */}
+            <Text style={styles.headerTitle}>Challenges</Text>
+            <TouchableOpacity onPress={() => { }}>
+                <Icon style={styles.headerSearchButton} name="menu" size={24} />
+            </TouchableOpacity>
+        </View>
     )
 };
 
@@ -116,7 +117,7 @@ const MyChallengesSection = (props) => {
             theme={lightTheme}>
             <Layout style={styles.myChallengesContainer}>
                 <Text style={styles.sectionTitle}>My Challenges</Text>
-                <Icon style={styles.myChallengesMenuButton} name="menu" size={20} />
+                {/* <Icon style={styles.myChallengesMenuButton} name="menu" size={20} /> */}
             </Layout>
             <ScrollView style={styles.myChallengesCardSection} horizontal={true} showsHorizontalScrollIndicator={false}>
                 {joinedChallengeComponents}
@@ -148,7 +149,7 @@ const ExploreChallengesSection = (props) => {
             mapping={mapping}
             theme={lightTheme}>
             <Layout style={styles.myChallengesContainer}>
-                <Text style={styles.sectionTitle}>Explores</Text>
+                <Text style={styles.sectionTitle}>Explore</Text>
             </Layout>
             {/* <CategoryBar /> */}
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
@@ -169,14 +170,14 @@ const HomeScreen = (props: Props) => {
     console.log('------ newChallengeData in home screen', newChallengeData)
     // console.log('------ joinedChallengeData in home screen', joinedChallengeData)
     console.log('------ joinedChallengeIDList in home screen', joinedChallengeIDList)
-    
+
 
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
                 <HomeScreenHeader />
                 <MyChallengesSection joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
-                <ExploreChallengesSection newChallengeData={newChallengeData} userID={user.uid}/>
+                <ExploreChallengesSection newChallengeData={newChallengeData} userID={user.uid} />
             </ScrollView>
         </SafeAreaView>
 

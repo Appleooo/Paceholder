@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
         // objectFit: 'cover',
     },
     welcomeSection: {
-        marginTop: 110,
-        height: 155,
+        marginTop: 0,
+        height: 160,
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: 'grey',
@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     forgetPasswordText: {
         fontSize: 13,
         fontFamily: 'Cabin-Regular',
-        color: '#4B4B4B',
+        color: 'white',
         textAlign: 'right',
     },
     loginButton: {
         width: width - 80,
         height: 42,
-        marginTop: 55,
+        marginTop: 120,
         marginBottom: 40,
         backgroundColor: '#FFBF69',
         borderRadius: 12,
