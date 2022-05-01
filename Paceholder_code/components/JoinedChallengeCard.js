@@ -63,8 +63,6 @@ const JoinedChallengeCard = (props: Props) => {
     const navigation = useNavigation();
     const { challengeInfo } = props;
 
-    console.log('----------- JoinedChallengeCard: ', challengeInfo);
-
     return (
         <ApplicationProvider
             mapping={mapping}

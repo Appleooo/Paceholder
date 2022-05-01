@@ -81,7 +81,7 @@ const NewChallengeCard = (props: Props) => {
                     <Image style={styles.newChallengesImage} source={require('../Assets/Images/running.jpeg')} />
                     <Layout style={styles.newChallengesInfoSection}>
                         <Text style={styles.newChallengesTitle}>{challengeInfo.challengeName}</Text>
-                        <Text style={styles.newChallengesAudienceTitle}>{challengeInfo.participantList}</Text>
+                        {/* <Text style={styles.newChallengesAudienceTitle}>{challengeInfo.participantList.length}</Text> */}
                         <Text style={styles.newChallengestagTitle}>{challengeInfo.challengeDescription}</Text>
                     </Layout>
                 </Layout>
