@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
     exploreChallengesCardSection: {
-        marginTop: 5,
+        marginTop: 10,
     },
     headerContainer: {
         width: width,
@@ -150,7 +150,7 @@ const ExploreChallengesSection = (props) => {
             <Layout style={styles.myChallengesContainer}>
                 <Text style={styles.sectionTitle}>Explores</Text>
             </Layout>
-            <CategoryBar />
+            {/* <CategoryBar /> */}
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
                 {newChallengeComponents}
             </ScrollView>
