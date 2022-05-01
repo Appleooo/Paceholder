@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions, Modal, Pressable } from 'react-native';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -70,6 +70,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
     },
+    checkinModal: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     challengeDetailTitle: {
         height: 28,
         width: 340,
@@ -125,6 +131,7 @@ const JoinedChallengeDetailScreen = () => {
     const navigation = useNavigation();
     const challengeInfo = require('../data/joinedChallenge.json');
 
+    const [modalVisible, setModalVisible] = useState(false);
     const [startEndDates, setStartEndDates] = useState(["2022-04-11", "2022-04-18"])
     const startingDate = challengeInfo.startDate;
     const endingDate = challengeInfo.endDate;
@@ -146,6 +153,27 @@ const JoinedChallengeDetailScreen = () => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    // Alert.alert("Modal has been closed.");
+                    setModalVisible(false);
+                }}
+            >
+                <View style={styles.checkinModal}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(false)}
+                            >
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
             <Layout style={styles.navigationContainer}>
                 <TouchableOpacity
                     style={styles.backButton}
@@ -160,7 +188,7 @@ const JoinedChallengeDetailScreen = () => {
                 <Layout style={styles.checkInContainer}>
                     <TouchableOpacity
                         style={styles.checkInButton}
-                        onPress={pressedCheckIn}
+                        onPress={() => setModalVisible(true)}
                     >
                         <Text style={styles.checkInText}>Check-in</Text>
                     </TouchableOpacity>
