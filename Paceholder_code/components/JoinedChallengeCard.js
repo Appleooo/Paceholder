@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     joinedChallengesTitle: {
-        height: 20,
+        height: 25,
         width: 180,
         paddingTop: 7,
     },
