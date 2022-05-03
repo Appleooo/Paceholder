@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         fontFamily: 'RobotoCondensed-Bold',
     },
     challengeDetailDescription: {
-        height: 55,
+        height: 70,
         width: 340,
         marginLeft: 25,
         fontSize: 16,
@@ -175,14 +175,14 @@ function showCheckInStatus(checkedInStatus) {
     }
 }
 
-const pressedCheckIn = () => {
 
-}
 
-const JoinedChallengeDetailScreen = () => {
-    var checkedInStatus = true;
+const JoinedChallengeDetailScreen = ({route}) => {
+    var checkedInStatus = false;
     const navigation = useNavigation();
-    const challengeInfo = require('../data/joinedChallenge.json');
+    const {data} = route.params;
+    console.log(data);
+    const challengeInfo = data;
 
     const [modalVisible, setModalVisible] = useState(false);
     const containerStyle = {backgroundColor: 'white', padding: 20};
@@ -191,14 +191,19 @@ const JoinedChallengeDetailScreen = () => {
     const startingDate = challengeInfo.startDate;
     const endingDate = challengeInfo.endDate;
     var markedDatesDict = {};
-    markedDatesDict[challengeInfo.startDate] = { startingDay: true, color: 'green', endingDay: true };
-    for (var date of challengeInfo.checkedinList) {
-        markedDatesDict[date] = { startingDay: true, color: 'orange', endingDay: true };
+    //markedDatesDict[challengeInfo.startDate] = { startingDay: true, color: 'green', endingDay: true };
+    // for (var date of challengeInfo.checkedinList) {
+    //     markedDatesDict[date] = { startingDay: true, color: 'orange', endingDay: true };
+    // }
+    function checkIn() {
+        checkedInStatus = true;
+        setModalVisible(true);
+        // markedDatesDict["2022-05-03"] = { startingDay: true, color: 'orange', endingDay: true };
     }
     firestore().collection('joinedChallenges').doc("GJemMnYLodC3P6OaywYB").get()
         .then(documentSnapshot => {
             if (documentSnapshot.exists) {
-                console.log(documentSnapshot.data());
+                //console.log(documentSnapshot.data());
             }
             else {
                 console.log('Error: Data does not exist');
@@ -220,9 +225,8 @@ const JoinedChallengeDetailScreen = () => {
                         <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                             <TextInput
                                 style={styles.fieldText}
-                                onChangeText={text => setName(text)}
                             />
-                            <Text style={styles.fieldUnitText}>miles</Text>
+                            <Text style={styles.fieldUnitText}>{data.unit}</Text>
                         </View>
                         <TouchableOpacity
                             style={styles.checkInModalButton}
@@ -235,7 +239,7 @@ const JoinedChallengeDetailScreen = () => {
             <Layout style={styles.navigationContainer}>
                 <TouchableOpacity
                     style={styles.navButtons}
-                    onPress={() => navigation.goBack()}>
+                    onPress={() => navigation.navigate("HomeScreen")}>
                     <Icon name={"arrow-left"} size={30} />
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -246,7 +250,7 @@ const JoinedChallengeDetailScreen = () => {
                 <Layout style={styles.checkInContainer}>
                     <TouchableOpacity
                         style={styles.checkInButton}
-                        onPress={() => setModalVisible(true)}
+                        onPress={() => checkIn()}
                     >
                         <Text style={styles.checkInText}>Check-in</Text>
                     </TouchableOpacity>

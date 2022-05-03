@@ -71,7 +71,7 @@ const NewChallengeCard = (props: Props) => {
                 onPress={() => {
                     navigation.navigate("NewChallengeScreen", {
                         screen: 'NewChallengeScreen',
-                        params: { challengeInfo: challengeInfo }
+                        data: challengeInfo 
                         
                     })
                     console.log('------------------ on press',challengeInfo)

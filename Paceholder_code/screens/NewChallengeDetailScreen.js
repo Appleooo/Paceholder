@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         fontFamily: 'RobotoCondensed-Bold',
     },
     challengeDetailDescription: {
-        height: 55,
+        height: 80,
         width: 340,
         marginLeft: 25,
         fontSize: 16,
@@ -117,10 +117,11 @@ function showCheckInStatus(checkedInStatus) {
 //     navigation.navigate("JoinedChallengeScreen")
 // }
 
-const NewChallengeDetailScreen = () => {
+const NewChallengeDetailScreen = ({route}) => {
     var checkedInStatus = true;
     const navigation = useNavigation();
-    const challengeInfo = require('../data/joinedChallenge.json');
+    const {data} = route.params;
+    const challengeInfo = data;
 
     return (
         <ApplicationProvider

@@ -1,9 +1,9 @@
 {
     "name": "Run 5 miles in 1 week",
     "challengeDescription": "Getting started with running! Go for a few shorter runs over two weeks and get to 5 miles!",
-    "checkedinList": ["2022-04-16", "2022-04-17"],
-    "endDate": "2022-04-21",
-    "startDate": "2022-04-14",
+    "checkedinList": ["2022-05-02"],
+    "endDate": "2022-05-08",
+    "startDate": "2022-05-01",
     "goal": 5,
     "participantList": ["user1", "user2"],
     "type": "Running",
