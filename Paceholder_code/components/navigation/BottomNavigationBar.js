@@ -164,14 +164,14 @@ const NavigationTabs = () => {
                         ),
                     }} /> */}
 
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Profile"
                     component={ProfileScreen}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => (
                             <Icon name="user" size={size} color={color} />
                         ),
-                    }} />
+                    }} /> */}
             </Tab.Navigator>
         </>
     );

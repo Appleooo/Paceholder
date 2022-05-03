@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView } from 're
 import { AuthContext } from '../components/navigation/AuthProvider';
 import HomeScreen from '../screens/HomeScreen';
 import firestore from '@react-native-firebase/firestore';
-
+import { mapping, light as lightTheme } from '@eva-design/eva';
+import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 
 const HomeScreenWrapper = () => {
     const [challengeData, setChallengeData] = useState([]);
@@ -63,7 +64,13 @@ const HomeScreenWrapper = () => {
     if (refresh == 0) {
         setRefresh(refresh + 1)
     }
-    return <HomeScreen newChallengeData={newChallengeData} joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
+    return (
+        <ApplicationProvider
+            mapping={mapping}
+            theme={lightTheme}>
+            <HomeScreen newChallengeData={newChallengeData} joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
+        </ApplicationProvider>
+    )
 }
 
 export default HomeScreenWrapper;
