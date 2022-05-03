@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
-import { mapping, light as lightTheme } from '@eva-design/eva';
+import { Layout } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Feather';
-import { ApplicationProvider, Layout, Avatar } from '@ui-kitten/components';
 
 import JoinedChallengeCard from '../components/JoinedChallengeCard';
 import NewChallengeCard from '../components/NewChallengeCard';
 import CategoryBar from '../components/CategoryBar';
 import { AuthContext } from '../components/navigation/AuthProvider';
+import MenuView from '../components/MenuView';
 
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#ffffff',
+        position: 'relative',
+        width: '100%',
     },
     myChallengesContainer: {
-        flex: 1,
-        width: width,
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignSelf: 'center',
-        justifyContent: 'space-between',
+        zIndex: 100,
+    },
+    myChallengesHeader: {
+        width: 200,
         marginTop: 15,
     },
     sectionTitle: {
@@ -63,9 +63,15 @@ const styles = StyleSheet.create({
     headerSearchButton: {
         // marginRight: 18,
         position: 'absolute',
-        marginTop: -12,
+        marginTop: -10,
         marginLeft: width / 4,
-    }
+    },
+    homeScreenBody: {
+        position: 'absolute',
+        top: 50,
+        // backgroundColor: 'grey',
+        zIndex: -100,
+    },
 
 });
 
@@ -76,16 +82,18 @@ type Props = Readonly<{
 
 }>;
 
-const HomeScreenHeader = () => {
+const HomeScreenHeader = (props) => {
     return (
-
-        <View style={styles.headerContainer}>
-            {/* <Avatar style={styles.headerAvatar} source={require('..//Assets/Images/Yijing.jpg')} /> */}
-            <Text style={styles.headerTitle}>Challenges</Text>
-            <TouchableOpacity onPress={() => { }}>
-                <Icon style={styles.headerSearchButton} name="menu" size={24} />
-            </TouchableOpacity>
-        </View>
+        <>
+            <View style={styles.headerContainer}>
+                {/* <Avatar style={styles.headerAvatar} source={require('..//Assets/Images/Yijing.jpg')} /> */}
+                <Text style={styles.headerTitle}>Challenges</Text>
+                <TouchableOpacity onPress={() => props.setShowMenuView(!props.showMenuView)}>
+                    <Icon style={styles.headerSearchButton} name="menu" size={24} />
+                </TouchableOpacity>
+            </View>
+            <MenuView showMenuView={props.showMenuView} setShowMenuView={props.setShowMenuView} />
+        </>
     )
 };
 
@@ -112,24 +120,24 @@ const MyChallengesSection = (props) => {
     }
 
     return (
-        <ApplicationProvider
-            mapping={mapping}
-            theme={lightTheme}>
-            <Layout style={styles.myChallengesContainer}>
-                <Text style={styles.sectionTitle}>My Challenges</Text>
-                {/* <Icon style={styles.myChallengesMenuButton} name="menu" size={20} /> */}
-            </Layout>
-            <ScrollView style={styles.myChallengesCardSection} horizontal={true} showsHorizontalScrollIndicator={false}>
-                {joinedChallengeComponents}
-            </ScrollView>
-        </ApplicationProvider>
+        <>
+            <View style={styles.myChallengesContainer}>
+                <Layout style={styles.myChallengesHeader}>
+                    <Text style={styles.sectionTitle}>My Challenges</Text>
+                    {/* <Icon style={styles.myChallengesMenuButton} name="menu" size={20} /> */}
+                </Layout>
+                <ScrollView style={styles.myChallengesCardSection} horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {joinedChallengeComponents}
+                </ScrollView>
+            </View>
+        </>
     );
 }
 
 const ExploreChallengesSection = (props) => {
     const { newChallengeData, userID } = props;
 
-    console.log('--------  explore section', typeof newChallengeData, newChallengeData.length > 0);
+    // console.log('--------  explore section', typeof newChallengeData, newChallengeData.length > 0);
     let newChallengeComponents = [];
     if (typeof newChallengeData !== 'undefined' && newChallengeData.length > 0) {
         filtered_data = []
@@ -145,25 +153,20 @@ const ExploreChallengesSection = (props) => {
     }
 
     return (
-        <ApplicationProvider
-            mapping={mapping}
-            theme={lightTheme}>
-            <Layout style={styles.myChallengesContainer}>
+        <>
+            <Layout style={styles.myChallengesHeader}>
                 <Text style={styles.sectionTitle}>Explore</Text>
             </Layout>
             {/* <CategoryBar /> */}
             <ScrollView style={styles.exploreChallengesCardSection} showsHorizontalScrollIndicator={false}>
                 {newChallengeComponents}
             </ScrollView>
-        </ApplicationProvider>
+        </>
     );
 }
 
 const HomeScreen = (props: Props) => {
-    const [challengeData, setChallengeData] = useState([]);
-    // const [newChallengeData, setNewChallengeData] = useState([]);
-    // const [joinedChallengeData, setJoinedChallengeData] = useState([]);
-    // const [joinedChallengeIDList, setJoinedChallengeIDList] = useState([]);
+    const [showMenuView, setShowMenuView] = useState(false);
     const { user, setUser } = useContext(AuthContext);
     const { newChallengeData, joinedChallengeData, joinedChallengeIDList } = props;
 
@@ -175,9 +178,11 @@ const HomeScreen = (props: Props) => {
     return (
         <SafeAreaView style={styles.body}>
             <ScrollView>
-                <HomeScreenHeader />
-                <MyChallengesSection joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
-                <ExploreChallengesSection newChallengeData={newChallengeData} userID={user.uid} />
+                <HomeScreenHeader showMenuView={showMenuView} setShowMenuView={setShowMenuView} />
+                <View style={styles.homeScreenBody}>
+                    <MyChallengesSection joinedChallengeData={joinedChallengeData} joinedChallengeIDList={joinedChallengeIDList} />
+                    <ExploreChallengesSection newChallengeData={newChallengeData} userID={user.uid} />
+                </View>
             </ScrollView>
         </SafeAreaView>
 
