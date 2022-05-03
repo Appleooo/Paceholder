@@ -224,16 +224,16 @@ const CreationScreen = ({ navigation }) => {
             <Image style={styles.creationImage} source={require('../Assets/Images/running.jpeg')} />
             <Text style={styles.creationText}>Create New Challenges</Text>
             <ScrollView style={styles.container} persistentScrollbar={true}>
-                <Text style={styles.creationTitle}>Challenge Name</Text>
+                <Text style={styles.creationTitle}>Challenge Title</Text>
                 <TextInput
                     style={styles.fieldText}
-                    placeholder={"Enter Your Challenge Name Here"}
+                    placeholder={"Name your challenge!"}
                     placeholderTextColor='#4B4B4B'
                     onChangeText={text => setName(text)} />
                 <Text style={styles.creationTitle}>Description</Text>
                 <TextInput
                     style={{ height: 80, ...styles.fieldText }}
-                    placeholder={"Enter Your Challenge Name Here"}
+                    placeholder={"Describe your challenge!"}
                     placeholderTextColor='#4B4B4B'
                     multiline={true}
                     onChangeText={text => setDescription(text)} />

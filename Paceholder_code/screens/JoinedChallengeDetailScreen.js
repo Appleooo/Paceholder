@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions, Modal, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import { Modal, Portal } from 'react-native-paper';
 import { ApplicationProvider, Layout } from '@ui-kitten/components';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import Icon from 'react-native-vector-icons/Feather';
@@ -25,14 +26,8 @@ const styles = StyleSheet.create({
         marginRight: 25,
         marginTop: 50,
     },
-    backButton: {
-        backgroundColor: 'rgba(255, 255, 255, 0.26)',
-        width: 30,
-        height: 30,
-    },
     navButtons: {
         backgroundColor: 'rgba(255, 255, 255, 0.25)',
-        borderRadius: 6,
     },
     challengeDetailContainer: {
         flex: 1,
@@ -63,18 +58,34 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Cabin-Regular_Medium',
     },
+    checkInModalText: {
+        fontSize: 18,
+        fontFamily: 'Cabin-Regular_Bold',
+    },
+    fieldText: {
+        fontFamily: 'Cabin-Regular',
+        fontSize: 15,
+        fontWeight: 'bold',
+        borderColor: 'black',
+        borderWidth: 1.0,
+        marginBottom: 13,
+        marginTop: 10,
+        borderRadius: 5,
+        padding: 2,
+        flex: 1,
+    },
+    fieldUnitText: {
+        flex: 2,
+        padding: 10,
+        fontSize: 19,
+        fontFamily: 'Cabin-Regular_Medium',
+    },
     checkInButton: {
         width: 84,
         height: 44,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
-    },
-    checkinModal: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22,
     },
     challengeDetailTitle: {
         height: 28,
@@ -109,19 +120,27 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
+        margin: 40,
+        width: 300,
+        height: 190,
+        paddingHorizontal: 24,
+        paddingVertical: 16,
+        backgroundColor: "#ffbf69",
+        borderRadius: 10,
+        justifyContent: 'flex-start',
         alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
+    },
+    modalViewContainer: {
+        width: '70%',
+        alignItems: 'flex-start',
+    },
+    checkInModalButton: {
+        borderColor: 'black',
+        borderWidth: 1.0,
+        borderRadius: 5,
+        alignSelf: 'center',
+        paddingHorizontal: 35,
+        paddingVertical: 15,
     },
     button: {
         borderRadius: 20,
@@ -166,6 +185,8 @@ const JoinedChallengeDetailScreen = () => {
     const challengeInfo = require('../data/joinedChallenge.json');
 
     const [modalVisible, setModalVisible] = useState(false);
+    const containerStyle = {backgroundColor: 'white', padding: 20};
+
     const [startEndDates, setStartEndDates] = useState(["2022-04-11", "2022-04-18"])
     const startingDate = challengeInfo.startDate;
     const endingDate = challengeInfo.endDate;
@@ -187,30 +208,33 @@ const JoinedChallengeDetailScreen = () => {
         <ApplicationProvider
             mapping={mapping}
             theme={lightTheme}>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    // Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.checkinModal}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(false)}
-                        >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
+            <Portal>
+                <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} contentContainerStyle={styles.modalView}>
+                    <TouchableOpacity
+                        style={{alignSelf: "flex-start"}}
+                        onPress={() => setModalVisible(false)}>
+                        <Icon name={"x"} size={30} />
+                    </TouchableOpacity>
+                    <View style={styles.modalViewContainer}>
+                        <Text style={styles.checkInModalText}>Update your progress!</Text>
+                        <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+                            <TextInput
+                                style={styles.fieldText}
+                                onChangeText={text => setName(text)}
+                            />
+                            <Text style={styles.fieldUnitText}>miles</Text>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.checkInModalButton}
+                            onPress={() => setModalVisible(false)}>
+                            <Text style={styles.checkInModalText}>Check In</Text>
+                        </TouchableOpacity>
                     </View>
-                </View>
-            </Modal>
+                </Modal>
+            </Portal>
             <Layout style={styles.navigationContainer}>
                 <TouchableOpacity
-                    style={styles.backButton}
+                    style={styles.navButtons}
                     onPress={() => navigation.goBack()}>
                     <Icon name={"arrow-left"} size={30} />
                 </TouchableOpacity>
