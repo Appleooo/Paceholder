@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         height: 28,
         width: 340,
         marginTop: 20,
+        marginBottom: 10,
         marginLeft: 25,
         fontSize: 22,
         fontFamily: 'RobotoCondensed-Bold',
@@ -258,7 +259,7 @@ const JoinedChallengeDetailScreen = ({route}) => {
                 <Layout style={styles.challengeDetailContainer}>
                     {/* back button and menu button*/}
                     <Image style={styles.challengeDetailImage} source={require('../Assets/Images/running.jpeg')} />
-                    <Text style={styles.challengeDetailTitle}>{challengeInfo.name}</Text>
+                    <Text style={styles.challengeDetailTitle}>{challengeInfo.challengeName}</Text>
                     <Text style={styles.challengeDetailDescription}>{challengeInfo.challengeDescription}</Text>
                     {showCheckInStatus(checkedInStatus)}
                     <Text style={styles.challengeDetailInformation}>Start Date: {challengeInfo.startDate}</Text>
